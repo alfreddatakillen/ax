@@ -1,0 +1,10 @@
+#!/bin/bash
+mkdir -p /etc/iwd
+cat <<__EOF__ >/etc/iwd/main.conf
+[General]
+EnableNetworkConfiguration=true
+AddressRandomization=true
+NameResolvingService=none
+__EOF__
+systemctl enable iwd
+
