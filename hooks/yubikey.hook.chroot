@@ -1,0 +1,2 @@
+#!/bin/bash
+sed -i 's/^use-ssh-agent/no-use-ssh-agent/' /etc/X11/Xsession.options
