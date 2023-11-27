@@ -51,6 +51,16 @@ cp config/archives/docker.list.chroot config/archives/docker.list.binary
 cp config/archives/docker.key.chroot config/archives/docker.key.binary
 echo "docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin" >config/package-lists/docker.list.chroot
 
+# ---------------------
+#  NODEJS
+# ---------------
+NODE_MAJOR=20
+echo "deb https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" >config/archives/nodejs.list.chroot
+curl https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key >config/archives/nodejs.key.chroot
+cp config/archives/nodejs.list.chroot config/archives/nodejs.list.binary
+cp config/archives/nodejs.key.chroot config/archives/nodejs.key.binary
+echo "nodejs" >config/package-lists/nodejs.list.chroot
+
 # --------------------
 #  WINDOW MANAGER
 # ------------------
