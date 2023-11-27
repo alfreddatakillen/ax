@@ -61,6 +61,11 @@ cp config/archives/nodejs.list.chroot config/archives/nodejs.list.binary
 cp config/archives/nodejs.key.chroot config/archives/nodejs.key.binary
 echo "nodejs" >config/package-lists/nodejs.list.chroot
 
+# ---------------------
+#  BUILD TOOLS
+# --------------------
+echo "build-essential" >config/package-lists/buildtools.list.chroot
+
 # --------------------
 #  WINDOW MANAGER
 # ------------------
