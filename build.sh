@@ -86,6 +86,9 @@ echo "curl chromium firefox-esr" >config/package-lists/webbrowser.list.chroot
 #  EDITOR
 # -----------------------
 echo "neovim" >config/package-lists/editor.list.chroot
+pushd "config/packages.chroot" >/dev/null
+wget --content-disposition "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+popd >/dev/null
 
 # ----------------------
 #  AUDIO
