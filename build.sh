@@ -165,7 +165,6 @@ pushd ".." >/dev/null
 mkdir -p build/config/includes.chroot/opt/ax
 rsync -avR --exclude "build" . build/config/includes.chroot/opt/ax/
 mkdir build/config/includes.chroot/opt/ax/build
-chown -R 1000:1000 build/config/includes.chroot/opt/ax
 popd >/dev/null
 
 # -----------------------------------------
