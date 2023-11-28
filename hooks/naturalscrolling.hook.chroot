@@ -1,0 +1,21 @@
+#!/bin/bash
+cat <<__EOF__ >/usr/share/X11/xorg.conf.d/20-natural-scrolling-touchpads.conf
+Section "InputClass"
+    Identifier "Natural Scrolling Touchpads"
+    MatchIsTouchpad "on"
+    MatchDevicePath "/dev/input/event*"
+    Option "VertScrollDelta" "-111"
+    Option "HorizScrollDelta" "-111"
+EndSection
+__EOF__
+cat <<__EOF__ >/usr/share/X11/xorg.conf.d/20-natural-scrolling-mouses.conf
+Section "InputClass"
+    Identifier "Natural Scrolling Mouses"
+    MatchIsPointer "on"
+    MatchIsTouchpad "off"
+    MatchDevicePath "/dev/input/event*"
+    Option "VertScrollDelta" "-1"
+    Option "HorizScrollDelta" "-1"
+    Option "DialDelta" "-1"
+EndSection
+__EOF__
