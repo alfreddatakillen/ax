@@ -1,6 +1,6 @@
 # ax
 
-Build script for a live linux distribution.
+Live Linux distribution.
 
 ## Generic features
 
