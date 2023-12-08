@@ -11,6 +11,11 @@ if [ ! -d build ]; then
 fi
 pushd build >/dev/null
 
+if [ "$(pwd)" != "/opt/ax/build" ]; then
+	echo "Hängslen och svångrem."
+	exit 1
+fi
+
 lb clean
 rm -Rf * .build
 
