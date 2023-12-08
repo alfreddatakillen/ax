@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Make sure permissions are alright
+find ~/.gnupg -type f -exec chmod 600 {} \;
+find ~/.gnupg -type d -exec chmod 700 {} \;
+find ~/.ssh -type f -exec chmod 600 {} \;
+find ~/.ssh -type d -exec chmod 700 {} \;
+
 # Autocomplete pass
 source /usr/share/bash-completion/completions/pass
 
