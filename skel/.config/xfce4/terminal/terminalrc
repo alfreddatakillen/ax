@@ -31,4 +31,5 @@ ColorPalette=#000000;#cc0000;#4e9a06;#c4a000;#3465a4;#75507b;#06989a;#d3d7cf;#55
 ScrollingUnlimited=TRUE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
 FontName=Hack 12
+CellHeightScale=1.100000
 
