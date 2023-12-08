@@ -6,6 +6,7 @@ binary*.contents
 binary*.packages
 binary*.zsync
 
+build/
 .build/
 build.log
 
