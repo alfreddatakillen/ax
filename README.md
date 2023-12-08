@@ -15,6 +15,7 @@ Live Linux distribution.
 
 ## Development tooling
 
+* nodejs, golang
 * Visual Studio Code (VSCode editor).
 * Neovim editor.
 * docker
