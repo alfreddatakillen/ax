@@ -61,6 +61,11 @@ cp config/archives/nodejs.list.chroot config/archives/nodejs.list.binary
 cp config/archives/nodejs.key.chroot config/archives/nodejs.key.binary
 echo "nodejs" >config/package-lists/nodejs.list.chroot
 
+# --------------------
+#  GOLANG
+# ----------------
+echo "golang" >config/package-lists/golang.list.chroot
+
 # ---------------------
 #  BUILD TOOLS
 # --------------------
