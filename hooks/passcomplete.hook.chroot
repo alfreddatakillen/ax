@@ -1,0 +1,3 @@
+#!/bin/bash
+curl https://raw.githubusercontent.com/zx2c4/password-store/master/src/completion/pass.bash-completion >/etc/bash_completion.d/pass-completion
+
