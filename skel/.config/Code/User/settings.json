@@ -1,5 +1,5 @@
 {
     "editor.fontFamily": "hack",
     "editor.fontSize": 16,
-    "editor.lineHeight": 21
+    "terminal.integrated.fontSize": 12
 }
