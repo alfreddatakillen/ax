@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Something about this default configuration makes stuff not work:
+rm /etc/containerd/config.toml
+
