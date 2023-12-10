@@ -6,12 +6,12 @@ if [ "$(whoami)" != "root" ]; then
 	exit 1
 fi
 
-if [ ! -d build ]; then
-	mkdir build
+if [ ! -d build/tmp ]; then
+	mkdir -p build/tmp
 fi
-pushd build >/dev/null
+pushd build/tmp >/dev/null
 
-if [ "$(pwd)" != "/opt/ax/build" ]; then
+if [ "$(pwd)" != "/opt/ax/build/tmp" ]; then
 	echo "Hängslen och svångrem."
 	exit 1
 fi
@@ -153,37 +153,37 @@ echo "pass" >config/package-lists/password.list.chroot
 # ----------------
 #  COPY HOOKS FILES
 # ------------------
-pushd "../hooks" >/dev/null
-rsync -avR . ../build/config/hooks/live/
+pushd "../../hooks" >/dev/null
+rsync -avR . ../build/tmp/config/hooks/live/
 popd >/dev/null
 
 # ----------------
 #  COPY SKEL FILES
 # ------------------
-pushd "../skel" >/dev/null
-mkdir -p ../build/config/includes.chroot/etc/skel/
-rsync -avR . ../build/config/includes.chroot/etc/skel/
-chown -R root:root ../build/config/includes.chroot/etc/skel
+pushd "../../skel" >/dev/null
+mkdir -p ../build/tmp/config/includes.chroot/etc/skel/
+rsync -avR . ../build/tmp/config/includes.chroot/etc/skel/
+chown -R root:root ../build/tmp/config/includes.chroot/etc/skel
 popd >/dev/null
 
 # ----------------
 #  BOOT SCRIPTS
 # ------------------
-pushd "../bootscripts" >/dev/null
-mkdir -p ../build/config/includes.chroot/lib/live/config
-rsync -avR . ../build/config/includes.chroot/lib/live/config/
-chown -R root:root ../build/config/includes.chroot/lib/live/config
-chmod -R 755 ../build/config/includes.chroot/lib/live/config
+pushd "../../bootscripts" >/dev/null
+mkdir -p ../build/tmp/config/includes.chroot/lib/live/config
+rsync -avR . ../build/tmp/config/includes.chroot/lib/live/config/
+chown -R root:root ../build/tmp/config/includes.chroot/lib/live/config
+chmod -R 755 ../build/tmp/config/includes.chroot/lib/live/config
 popd >/dev/null
 
 # --------------------------
 #  STUFF TO BUILD THIS DISTRO
 # ---------------------
 echo "live-build" >config/package-lists/livebuild.list.chroot
-pushd ".." >/dev/null
-mkdir -p build/config/includes.chroot/opt/ax
-rsync -avR --exclude "build" . build/config/includes.chroot/opt/ax/
-mkdir build/config/includes.chroot/opt/ax/build
+pushd "../.." >/dev/null
+mkdir -p build/tmp/config/includes.chroot/opt/ax
+rsync -avR --exclude "build" . build/tmp/config/includes.chroot/opt/ax/
+mkdir build/tmp/config/includes.chroot/opt/ax/build
 popd >/dev/null
 
 # -----------------------------------------
