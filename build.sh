@@ -114,7 +114,7 @@ echo "iwd" >config/package-lists/wifi.list.chroot
 # ----------------
 #  WEB BROWSER
 # ------------------
-echo "curl chromium firefox-esr" >config/package-lists/webbrowser.list.chroot
+echo "curl chromium firefox-esr torbrowser-launcher" >config/package-lists/webbrowser.list.chroot
 
 # -------------------
 #  EDITOR
