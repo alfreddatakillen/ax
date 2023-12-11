@@ -11,7 +11,7 @@ Live Linux distribution.
 
 * Yubikey for SSH auth.
 * Yubikey for GPG.
-* The standard unix password manager `pass`.
+* [Ripasso](https://github.com/cortex/ripasso/) password manager (on top of the standard unix password manager `pass`).
 
 ## Development tooling
 
