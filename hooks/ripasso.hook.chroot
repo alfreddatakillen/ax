@@ -1,0 +1,18 @@
+#!/bin/bash
+
+apt install -y libssl-dev libclang-dev libadwaita-1-dev libgpgme11-dev libgpg-error-dev libgtk-4-dev libxcb-shape0-dev libxcb-xfixes0-dev nettle-dev
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+source "$HOME/.cargo/env"
+
+git clone --depth 1 https://github.com/cortex/ripasso.git
+pushd ripasso
+
+cargo fetch
+cargo build --all --frozen --release --offline
+
+popd
+
+cp ripasso/target/release/ripasso-cursive /usr/local/bin/ripasso
+rm -Rf ripasso
+
