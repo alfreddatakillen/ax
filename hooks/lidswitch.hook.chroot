@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Turn off computer on lid switch:
+
+cat <<_EOF_ >>/etc/systemd/logind.conf
+HandleLidSwitch=poweroff
+HandleLidSwitchExternalPower=poweroff
+HandleLidSwitchDocked=poweroff
+_EOF_
+
+# Turn off instead of reboot, suspend, hibernate on keypress:
+cat <<_EOF_ >>/etc/systemd/logind.conf
+HandlePowerKey=poweroff
+HandlePowerKeyLongPress=poweroff
+HandleRebootKey=poweroff
+HandleRebootKeyLongPress=poweroff
+HandleSuspendKey=poweroff
+HandleSuspendKeyLongPress=poweroff
+HandleHibernateKey=poweroff
+HandleHibernateKeyLongPress=poweroff
+_EOF_
+
+
