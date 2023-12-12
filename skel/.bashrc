@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Git config
+git config --global init.defaultBranch main
+
 # Make sure permissions are alright
 find ~/.gnupg -type f -exec chmod 600 {} \;
 find ~/.gnupg -type d -exec chmod 700 {} \;
