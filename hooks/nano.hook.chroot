@@ -2,4 +2,4 @@
 
 # remove the nano crap
 
-sudo apt purge nano
+sudo apt purge -y nano
