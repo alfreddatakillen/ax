@@ -102,6 +102,11 @@ echo "fonts-hack" >config/package-lists/fonts.list.chroot
 echo "iwd" >config/package-lists/wifi.list.chroot
 # iwd configuration is in hooks/iwd.hook.chroot
 
+# -------------------
+#  WIREGUARD
+# -----------------
+echo "wireguard" >config/package-lists/wireguard.list.chroot
+
 # ----------------
 #  WEB BROWSER
 # ------------------

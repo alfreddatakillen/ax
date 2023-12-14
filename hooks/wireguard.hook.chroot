@@ -1,0 +1,9 @@
+#!/bin/bash
+cat <<_EOF_ >/etc/sysctl.d/wireguard.conf
+net.ipv4.ip_forward=1
+_EOF_
+
+# Wireguard uses this command to change resolv conf.
+# However, we do not want it, so adding this dummy.
+touch /usr/sbin/resolvconf
+chmod a+x /usr/sbin/resolvconf
