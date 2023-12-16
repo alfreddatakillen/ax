@@ -76,6 +76,11 @@ echo "golang" >config/package-lists/golang.list.chroot
 # --------------------
 echo "build-essential" >config/package-lists/buildtools.list.chroot
 
+# -------------------------
+#  COMMAND LINE TOOLING
+# ---------------------------
+echo "jq" >config/package-lists/clitools.list.chroot
+
 # --------------------
 #  WINDOW MANAGER
 # ------------------
