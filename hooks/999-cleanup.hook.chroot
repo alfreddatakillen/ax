@@ -1,0 +1,7 @@
+#!/bin/bash
+pushd /root
+rm -Rf .sudo_as_admin_successful .wget-hsts
+popd
+
+apt clean -y
+

@@ -16,3 +16,7 @@ popd
 cp ripasso/target/release/ripasso-cursive /usr/local/bin/ripasso
 rm -Rf ripasso
 
+pushd "$HOME" >/dev/null
+rm -Rf .bashrc .cargo .profile .rustup
+popd >/dev/null
+
