@@ -19,9 +19,10 @@ fi
 lb clean
 rm -Rf * .build
 
+# To remove kernel output during boot, add this to bootappend-live: quiet loglevel=0
 lb config \
 	-a amd64 \
-	--bootappend-live "boot=live components keyboard-layouts=se live-config.user-default-groups=cdrom,floppy,sudo,audio,dip,video,plugdev,users,user,netdev,docker nomodeset quiet loglevel=0" \
+	--bootappend-live "boot=live components keyboard-layouts=se live-config.user-default-groups=cdrom,floppy,sudo,audio,dip,video,plugdev,users,user,netdev,docker nomodeset" \
 	--parent-mirror-bootstrap http://ftp.se.debian.org/debian/ \
 	--parent-mirror-binary http://ftp.se.debian.org/debian/ \
 	--parent-mirror-chroot-security http://security.debian.org/ \
