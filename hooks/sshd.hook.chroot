@@ -1,0 +1,8 @@
+#!/bin/bash
+cat <<_EOF_ >/etc/ssh/sshd_config.d/disable_root_login.conf
+ChallengeResponseAuthentication no
+PasswordAuthentication no
+UsePAM no
+PermitRootLogin no
+_EOF_
+

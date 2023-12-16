@@ -77,6 +77,11 @@ echo "golang" >config/package-lists/golang.list.chroot
 # --------------------
 echo "build-essential" >config/package-lists/buildtools.list.chroot
 
+# -----------------
+#  SSHD
+# ----------------
+echo "openssh-server" >config/package-list/sshd.list.chroot
+
 # -------------------------
 #  COMMAND LINE TOOLING
 # ---------------------------
@@ -195,6 +200,14 @@ mkdir -p config/includes.chroot/var/lib/iwd
 pushd config/includes.chroot/var/lib/iwd >/dev/null
 rsync -avr /var/lib/iwd/ ./
 popd >/dev/null
+
+# -----------------------------------------
+#  KEEP AUTHORIZED KEYS FROM BUILD MACHINE
+# ---------------------------------------
+if [ -e $HOME/.ssh/authorized_keys ]; then
+	mkdir -p config/includes.chroot/etc/skel/.ssh
+	cp $HOME/.ssh/authorized_keys config/includes.chroot/etc/skel/.ssh/authorized_keys
+fi
 
 PATH="$PATH:/sbin:/usr/sbin" lb build
 
