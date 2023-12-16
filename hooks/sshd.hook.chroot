@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir -p /etc/ssh/sshd_config.d
 cat <<_EOF_ >/etc/ssh/sshd_config.d/disable_root_login.conf
 ChallengeResponseAuthentication no
 PasswordAuthentication no
