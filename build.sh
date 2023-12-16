@@ -80,7 +80,7 @@ echo "build-essential" >config/package-lists/buildtools.list.chroot
 # -----------------
 #  SSHD
 # ----------------
-echo "openssh-server" >config/package-list/sshd.list.chroot
+echo "openssh-server" >config/package-lists/sshd.list.chroot
 
 # -------------------------
 #  COMMAND LINE TOOLING
