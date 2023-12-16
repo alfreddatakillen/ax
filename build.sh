@@ -204,11 +204,12 @@ popd >/dev/null
 # -----------------------------------------
 #  KEEP AUTHORIZED KEYS FROM BUILD MACHINE
 # ---------------------------------------
-if [ -e $HOME/.ssh/authorized_keys ]; then
-	mkdir -p config/includes.chroot/etc/skel/.ssh
-	cp $HOME/.ssh/authorized_keys config/includes.chroot/etc/skel/.ssh/authorized_keys
-fi
+mkdir -p config/includes.chroot/etc/skel/.ssh
+[[ -f "/home/user/.ssh/authorized_keys" ]] && cp /home/user/.ssh/authorized_keys config/includes.chroot/etc/skel/.ssh/authorized_keys
 
+# ---------------
+#  BUILD IT!
+# -------------
 PATH="$PATH:/sbin:/usr/sbin" lb build
 
 popd >/dev/null
