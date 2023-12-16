@@ -21,7 +21,7 @@ rm -Rf * .build
 
 lb config \
 	-a amd64 \
-	--bootappend-live "boot=live components keyboard-layouts=se live-config.user-default-groups=cdrom,floppy,sudo,audio,dip,video,plugdev,users,user,netdev,docker" \
+	--bootappend-live "boot=live components keyboard-layouts=se live-config.user-default-groups=cdrom,floppy,sudo,audio,dip,video,plugdev,users,user,netdev,docker nomodeset quiet loglevel=0" \
 	--parent-mirror-bootstrap http://ftp.se.debian.org/debian/ \
 	--parent-mirror-binary http://ftp.se.debian.org/debian/ \
 	--parent-mirror-chroot-security http://security.debian.org/ \
