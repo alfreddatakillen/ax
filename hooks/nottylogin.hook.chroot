@@ -1,7 +1,5 @@
 #!/bin/bash
 
-systemctl disable getty@tty1.service
-
 cat <<_EOF_ >>/etc/systemd/logind.conf
 NAutoVTs=0
 ReserveVT=0
