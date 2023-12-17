@@ -13,10 +13,19 @@ Live Linux distribution.
 * Yubikey for GPG.
 * [Ripasso](https://github.com/cortex/ripasso/) password manager (on top of the standard unix password manager `pass`).
 
-## Development tooling
+## Programming languages/compilers/runtimes
 
-* nodejs, golang
-* Visual Studio Code (VSCode editor).
-* Neovim editor.
+* nodejs (javascript)
+* golang
+
+## Editors
+
+* VSCode
+* Neovim
+
+## Container tooling
+
 * docker
+* kubernetes tooling (kubectl, kubeadm)
+* kind for local kubernetes development
 

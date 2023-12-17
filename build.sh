@@ -73,6 +73,15 @@ echo "nodejs" >config/package-lists/nodejs.list.chroot
 echo "golang" >config/package-lists/golang.list.chroot
 
 # ---------------------
+#  KUBERNETES
+# ------------------
+echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" >config/archives/kubernetes.list.chroot
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg >config/archives/kubernetes.key.chroot
+cp config/archives/kubernetes.list.chroot config/archives/kubernetes.list.binary
+cp config/archives/kubernetes.key.chroot config/archives/kubernetes.key.binary
+echo "kubelet kubeadm kubectl" >config/package-lists/kubernetes.list.chroot
+
+# ---------------------
 #  BUILD TOOLS
 # --------------------
 echo "build-essential" >config/package-lists/buildtools.list.chroot

@@ -52,7 +52,7 @@ if [ "$CONTAINERD_DATA_DIR$DOCKER_DATA_DIR" != "" ]; then
                 mkdir -p "$CONTAINERD_DATA_DIR"
                 echo "containerd data dir: $CONTAINERD_DATA_DIR"
                 cat <<_EOF_ >/etc/containerd/config.toml
-disabled_plugins = ["cri"]
+#disabled_plugins = ["cri"] # disabled by default, but we need it for kubernetes
 root = "$CONTAINERD_DATA_DIR"
 _EOF_
         fi

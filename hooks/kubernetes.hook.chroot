@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Enable some kubernetes networking yada
+cat <<_EOF_ >/etc/sysctl.d/kubernetes.conf
+net.bridge.bridge-nf-call-ip6tables = 1
+net.bridge.bridge-nf-call-iptables = 1
+net.ipv4.ip_forward = 1
+_EOF_
+
+# Makes modprobes permanent:
+echo "overlay" >>/etc/modules
+echo "br_netfilter" >>/etc/modules
+
+go install sigs.k8s.io/kind@v0.20.0
+cp $HOME/go/bin/kind /usr/local/bin/kind
+
