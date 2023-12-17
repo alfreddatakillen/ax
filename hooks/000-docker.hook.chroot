@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# containerd and docker should not run if there is no service providing a data dir for them.
+
+systemctl disable docker
+systemctl disable containerd
+rm -Rf /var/lib/containerd
+rm -Rf /var/lib/docker
+
