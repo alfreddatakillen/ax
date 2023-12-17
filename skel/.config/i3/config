@@ -184,6 +184,3 @@ exec --no-startup-id /usr/local/bin/lock &
 
 exec_always --no-startup-id feh --bg-fill ~/.config/i3/background.jpg
 
-# TODO: Run this from somewhere else on boot:
-exec --no-startup-id /usr/local/bin/servicestarter
-
