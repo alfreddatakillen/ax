@@ -1,0 +1,74 @@
+#!/bin/bash
+
+if [ "$(whoami)" != "root" ]; then
+        echo "Must be root."
+        exit 1
+fi
+
+SERVICE_PARTITIONS=""
+
+# FIND NON-MOUNTED SERVICE PARTITIONS:
+PARTITIONS="$(lsblk --fs --json | jq -r '.blockdevices[].children | select(. != null) | .[] | select((.mountpoints | length) == 1) | select(.mountpoints[0] == null) | select(.fstype == "ext4") | .name')"
+for PARTITION in $PARTITIONS; do
+        AX_ACTIVE="$(debugfs -c -R "stat .ax/config.json" /dev/$PARTITION 2>/dev/null | grep "Type: regular")"
+        if [ "$AX_ACTIVE" != "" ]; then
+                SERVICE_PARTITIONS="$PARTITION "
+        fi
+done
+
+# MOUNT NON-MOUNTED SERVICE PARTITONS:
+for PARTITION in $SERVICE_PARTITIONS; do
+        echo "Found service partition: $PARTITION"
+        MOUNTDIR="/opt/servicemounts/$PARTITION"
+        mkdir -p "$MOUNTDIR"
+        mount /dev/$PARTITION "$MOUNTDIR"
+done
+
+# SET CONFIG VARS FROM CONFIG FILES
+CONTAINERD_DATA_DIR=""
+DOCKER_DATA_DIR=""
+for SERVICEMOUNT in $(ls -F /opt/servicemounts | grep "/$" | sed 's/\/$//'); do
+        MOUNTDIR="/opt/servicemounts/$SERVICEMOUNT"
+        pushd "$MOUNTDIR" >/dev/null
+        if [ "$CONTAINERD_DATA_DIR" = "" ]; then
+                C="$(cat .ax/config.json | jq -r '.["containerd-data-dir"]')"
+                if [ "$C" != "null" ]; then
+                        CONTAINERD_DATA_DIR="$(echo "$C" | sed "s#%mountdir%#$(pwd)#i")"
+                fi
+        fi
+        if [ "$DOCKER_DATA_DIR" = "" ]; then
+                D="$(cat .ax/config.json | jq -r '.["docker-data-dir"]')"
+                if [ "$D" != "null" ]; then
+                        DOCKER_DATA_DIR="$(echo "$D" | sed "s#%mountdir%#$(pwd)#i")"
+                fi
+        fi
+        popd >/dev/null
+done
+
+if [ "$CONTAINERD_DATA_DIR$DOCKER_DATA_DIR" != "" ]; then
+        service docker stop
+        service containerd stop
+        if [ "$CONTAINERD_DATA_DIR" != "" ]; then
+                mkdir -p "$CONTAINERD_DATA_DIR"
+                echo "containerd data dir: $CONTAINERD_DATA_DIR"
+                cat <<_EOF_ >/etc/containerd/config.toml
+disabled_plugins = ["cri"]
+root = "$CONTAINERD_DATA_DIR"
+_EOF_
+        fi
+        if [ "$DOCKER_DATA_DIR" != "" ]; then
+                mkdir -p "$DOCKER_DATA_DIR"
+                echo "docker data dir: $DOCKER_DATA_DIR"
+                cat <<_EOF_ >/etc/docker/daemon.json
+{
+        "data-root": "$DOCKER_DATA_DIR"
+}
+_EOF_
+        fi
+fi
+
+# If those were stopped, make sure they runs now:
+service containerd start
+service docker start
+
+

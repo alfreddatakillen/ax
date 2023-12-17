@@ -174,6 +174,16 @@ chown -R root:root ../build/tmp/config/includes.chroot/etc/skel
 popd >/dev/null
 
 # ----------------
+#  BINS
+# ------------------
+pushd "../../bin" >/dev/null
+mkdir -p ../build/tmp/config/includes.chroot/usr/local/bin
+rsync -avR . ../build/tmp/config/includes.chroot/usr/local/bin/
+chown -R root:root ../build/tmp/config/includes.chroot/usr/local/bin
+chmod -R 755 ../build/tmp/config/includes.chroot/usr/local/bin
+popd >/dev/null
+
+# ----------------
 #  BOOT SCRIPTS
 # ------------------
 pushd "../../bootscripts" >/dev/null
