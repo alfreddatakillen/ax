@@ -42,4 +42,4 @@ Live Linux distribution built on Debian Bookworm (12).
 
 * AWS CLI
 * git
-
+* Hack font (typeface designed for source code)
