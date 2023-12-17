@@ -36,7 +36,7 @@ Live Linux distribution built on Debian Bookworm (12).
 * Chromium
 * TOR Browser
 
-## Misc developer's tooling
+## Misc tooling for developers
 
 * AWS CLI
 
