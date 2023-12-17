@@ -39,4 +39,5 @@ Live Linux distribution built on Debian Bookworm (12).
 ## Misc tooling for developers
 
 * AWS CLI
+* git
 
