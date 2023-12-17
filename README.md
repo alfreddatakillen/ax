@@ -1,6 +1,6 @@
 # ax
 
-Live Linux distribution.
+Live Linux distribution built on Debian Bookworm (12).
 
 ## Generic features
 
@@ -12,6 +12,7 @@ Live Linux distribution.
 * Yubikey for SSH auth.
 * Yubikey for GPG.
 * [Ripasso](https://github.com/cortex/ripasso/) password manager (on top of the standard unix password manager `pass`).
+* WireGuard (VPN)
 
 ## Programming languages/compilers/runtimes
 
@@ -28,4 +29,14 @@ Live Linux distribution.
 * docker
 * kubernetes tooling (kubectl, kubeadm)
 * kind for local kubernetes development
+
+## Web browsers
+
+* Firefox
+* Chromium
+* TOR Browser
+
+## Misc developer's tooling
+
+* AWS CLI
 
