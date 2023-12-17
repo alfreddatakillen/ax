@@ -85,7 +85,7 @@ echo "openssh-server" >config/package-lists/sshd.list.chroot
 # -------------------------
 #  COMMAND LINE TOOLING
 # ---------------------------
-echo "jq" >config/package-lists/clitools.list.chroot
+echo "jq tmux" >config/package-lists/clitools.list.chroot
 
 # --------------------
 #  WINDOW MANAGER
