@@ -13,4 +13,4 @@ echo "br_netfilter" >>/etc/modules
 
 go install sigs.k8s.io/kind@v0.20.0
 cp $HOME/go/bin/kind /usr/local/bin/kind
-
+rm -Rf $HOME/go $HOME/.cache

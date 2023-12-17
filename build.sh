@@ -94,7 +94,7 @@ echo "openssh-server" >config/package-lists/sshd.list.chroot
 # -------------------------
 #  COMMAND LINE TOOLING
 # ---------------------------
-echo "htop jq tmux" >config/package-lists/clitools.list.chroot
+echo "htop jq timelimit tmux unzip" >config/package-lists/clitools.list.chroot
 
 # --------------------
 #  WINDOW MANAGER
