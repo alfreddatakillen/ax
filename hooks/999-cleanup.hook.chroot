@@ -1,7 +1,6 @@
 #!/bin/bash
 pushd /root
-rm -Rf *
-rm -Rf .*
+rm -Rf .ssh
 popd
 
 apt clean -y
