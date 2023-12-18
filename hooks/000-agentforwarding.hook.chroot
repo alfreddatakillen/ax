@@ -1,0 +1,5 @@
+#!/bin/bash
+cat <<_EOF_ >/etc/ssh/sshd_config.d/agentforwarding.conf
+StreamLocalBindUnlink yes
+_EOF_
+
