@@ -166,6 +166,11 @@ echo "usbutils gnupg pcscd scdaemon pinentry-gnome3" >config/package-lists/yubi.
 # ----------------------------------
 echo "pass" >config/package-lists/password.list.chroot
 
+# ---------------------------------------
+#  AWS
+# -----------------------------------
+echo "awscli" >config/package-lists/aws.list.chroot
+
 # ----------------
 #  COPY HOOKS FILES
 # ------------------
