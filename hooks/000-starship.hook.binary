@@ -1,5 +1,5 @@
 #!/bin/bash
 wget https://starship.rs/install.sh
 chmod a+x install.sh
-./install.sh -y
+./install.sh -V -y -p unknown-linux-musl -b /usr/local/bin -a x86_64
 rm install.sh
