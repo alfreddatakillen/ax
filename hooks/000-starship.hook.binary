@@ -1,0 +1,5 @@
+#!/bin/bash
+curl https://starship.rs/install.sh >install.sh
+chmod a+x install.sh
+./install.sh -y
+rm install.sh
