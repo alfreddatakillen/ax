@@ -18,6 +18,9 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 # GPG agent will be used for SSH auth (enables Yubikey auth for ssh)
 export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
 
+# Shortcuts/etc
+alias docker-compose='docker compose'
+
 # Colorize
 alias grep='grep --color'
 alias ls='ls --color=auto'
