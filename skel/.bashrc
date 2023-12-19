@@ -19,7 +19,9 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
 
 # Colorize
+alias grep='grep --color'
 alias ls='ls --color=auto'
+alias tree='tree -C'
 
 # Starship prompt
 eval "$(starship init bash)"
