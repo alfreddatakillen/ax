@@ -1,5 +1,8 @@
 {
     "editor.fontFamily": "hack",
     "editor.fontSize": 16,
-    "terminal.integrated.fontSize": 12
+    "terminal.integrated.fontSize": 12,
+    "workbench.startupEditor": "none",
+    "workbench.welcomePage.walkthroughs.openOnInstall": false
+
 }
