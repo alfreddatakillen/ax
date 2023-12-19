@@ -234,7 +234,7 @@ mkdir -p config/includes.chroot/etc/skel/.ssh
 # ---------------
 #  BUILD IT!
 # -------------
-PATH="$PATH:/sbin:/usr/sbin" lb build --verbose --debug --color
+PATH="$PATH:/sbin:/usr/sbin" lb build --verbose --debug --color | tee ./build.log
 
 popd >/dev/null
 popd >/dev/null
