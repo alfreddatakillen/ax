@@ -111,11 +111,6 @@ popd >/dev/null
 # ----------------------
 echo "xfce4-terminal" >config/package-lists/terminal.list.chroot
 
-# -------------
-#  FONTS
-# ---------
-echo "fonts-hack" >config/package-lists/fonts.list.chroot
-
 # -------------------
 #  NETWORKING
 # -----------------

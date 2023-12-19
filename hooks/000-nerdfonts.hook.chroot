@@ -1,0 +1,16 @@
+#!/bin/bash
+pushd /usr/share/fonts/truetype
+
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/hack.zip
+mkdir hack
+pushd hack
+unzip ../hack.zip
+rm HackNerdFont-*
+rm HackNerdFontPropo-*
+popd
+rm hack.zip
+
+done
+
+fc-cache -fv
+popd
