@@ -9,8 +9,6 @@ rm HackNerdFont-*
 rm HackNerdFontPropo-*
 popd
 rm hack.zip
-
-done
+popd
 
 fc-cache -fv
-popd
