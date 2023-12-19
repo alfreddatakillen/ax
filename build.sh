@@ -58,6 +58,11 @@ cp config/archives/docker.key.chroot config/archives/docker.key.binary
 echo "docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin" >config/package-lists/docker.list.chroot
 
 # ---------------------
+#  FONTS
+# -------------------------
+echo "fonts-firacode fonts-hack fonts-noto-core fonts-noto-mono fonts-noto-extra fonts-noto-ui-core fonts-noto-color-emoji" >config/package-lists/fonts.list.chroot
+
+# --------------------m
 #  NODEJS
 # ---------------
 NODE_MAJOR=20
@@ -109,7 +114,7 @@ popd >/dev/null
 # -----------------
 #  TERMINAL
 # ----------------------
-echo "xfce4-terminal" >config/package-lists/terminal.list.chroot
+echo "alacritty" >config/package-lists/terminal.list.chroot
 
 # -------------------
 #  NETWORKING
