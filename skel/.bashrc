@@ -29,8 +29,12 @@ alias tree='tree -C'
 # Starship prompt
 eval "$(starship init bash)"
 
+# Set window title to the current path when at prompt
 function set_window_title(){
 	echo -ne "\033]0; $PWD \007"
 }
 starship_precmd_user_func="set_window_title"
+
+# Set window title to currently running command
+trap 'echo -ne "\033]2;$PWD > $(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
 
