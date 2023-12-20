@@ -1,0 +1,5 @@
+#!/bin/bash
+pushd /usr/local/bin
+wget https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/lscolors.sh
+chmod a+x lscolors.sh
+popd

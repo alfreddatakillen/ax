@@ -26,6 +26,9 @@ alias grep='grep --color'
 alias ls='ls --color=auto'
 alias tree='tree -C'
 
+# Source ls colors from https://github.com/trapd00r/LS_COLORS
+source /usr/local/bin/lscolors.sh
+
 # Starship prompt
 eval "$(starship init bash)"
 
