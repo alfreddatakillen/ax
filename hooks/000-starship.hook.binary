@@ -1,5 +1,10 @@
 #!/bin/bash
-wget https://starship.rs/install.sh
-chmod a+x install.sh
-./install.sh -y
-rm install.sh
+
+# For some reason, the starship installer does not work in the live build chroot environment
+# Do check https://github.com/starship/starship/releases/ every now and then for updates.
+
+pushd /usr/local/bin
+wget https://github.com/starship/starship/releases/download/v1.16.0/starship-x86_64-unknown-linux-musl.tar.gz
+tar xzvf starship-x86_64-unknown-linux-musl.tar.gz
+rm starship-x86_64-unknown-linux-musl.tar.gz
+popd
