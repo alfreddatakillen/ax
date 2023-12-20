@@ -1,9 +1,15 @@
-right_format = "$time"
+add_newline = true 
+continuation_prompt = '▶▶ '
 
-[time]
-disabled = false
-style = "bold bright-black"
-format = "[$time]($style)"
+# Double the default timeouts
+scan_timeout = 20
+command_timeout = 1000
+
+[directory]
+truncation_symbol="…/"
 
 [line_break]
-disabled = true
+disabled=true
+
+[time]
+disabled=false

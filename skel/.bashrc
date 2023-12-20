@@ -29,3 +29,8 @@ alias tree='tree -C'
 # Starship prompt
 eval "$(starship init bash)"
 
+function set_window_title(){
+	echo -ne "\033]0; $PWD \007"
+}
+starship_precmd_user_func="set_window_title"
+
