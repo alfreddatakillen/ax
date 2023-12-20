@@ -37,6 +37,7 @@ bindsym $mod+Shift+q kill
 
 # start ulauncher
 bindsym $mod+d exec --no-startup-id ulauncher-toggle
+bindsym $mod+space exec --no-startup-id ulauncher-toggle
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -82,10 +83,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+#bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -175,10 +176,6 @@ smart_gaps off
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec_always --no-startup-id ~/.config/picom/launch.sh
 exec_always --no-startup-id ulauncher --hide-window
-
-# If polybar is executed after those screenlocks,
-# the bar might end up on top of the screenlock screen,
-# so do this after polybar is started:
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --show-failed-attempts --ignore-empty-password --tiling --image=/home/user/.config/i3/lock.png
 exec --no-startup-id /usr/local/bin/lock &
 

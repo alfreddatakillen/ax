@@ -6,10 +6,12 @@ draw_bold_text_with_bright_colors: true
 cursor: 
   style:
     blinking: Always
-    blink_interval: 500
     unfocused_hollow: true
 live_config_reload: true
 window:
   decorations: None
 mouse:
   hide_when_typing: true
+selection:
+  save_to_clipboard: true
+dynamic_title: true

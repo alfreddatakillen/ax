@@ -9,11 +9,16 @@ Live Linux distribution built on Debian Bookworm (12).
 * Live system on readonly USB.
 * Tiling window manager `i3`.
 
+### Command line environment
+
+* [Alacritty](https://github.com/alacritty/alacritty) terminal
+* [starship](https://starship.rs/) prompt
+
 ### Security features
 
-* Yubikey for SSH auth.
-* Yubikey for GPG.
-* [Ripasso](https://github.com/cortex/ripasso/) password manager (on top of the standard unix password manager `pass`).
+* Yubikey for SSH auth
+* Yubikey for GPG
+* [Ripasso](https://github.com/cortex/ripasso/) password manager (on top of the standard unix password manager `pass`)
 * WireGuard (VPN)
 
 ### Programming languages/compilers/runtimes
