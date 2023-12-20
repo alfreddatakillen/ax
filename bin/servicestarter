@@ -12,7 +12,7 @@ PARTITIONS="$(lsblk --fs --json | jq -r '.blockdevices[].children | select(. != 
 for PARTITION in $PARTITIONS; do
         AX_ACTIVE="$(debugfs -c -R "stat .ax/config.json" /dev/$PARTITION 2>/dev/null | grep "Type: regular")"
         if [ "$AX_ACTIVE" != "" ]; then
-                SERVICE_PARTITIONS="$PARTITION "
+                SERVICE_PARTITIONS="$PARTITION $SERVICE_PARTITIONS"
         fi
 done
 
