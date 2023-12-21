@@ -41,3 +41,5 @@ starship_precmd_user_func="set_window_title"
 # Set window title to currently running command
 trap 'echo -ne "\033]2;$PWD > $(history 1 | sed "s/^[ ]*[0-9]*[ ]*//g")\007"' DEBUG
 
+# Display some system data on terminal start
+neofetch --ascii_distro tux --ascii_colors=distro --ascii_bold on --disable icons theme --os_arch on --cpu_temp C --uptime_shorthand tiny --memory_percent on --backend ascii
