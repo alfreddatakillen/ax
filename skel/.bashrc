@@ -20,6 +20,7 @@ alias docker-compose='docker compose'
 
 # Colorize
 alias grep='grep --color'
+alias less='less -R'
 alias ls='ls --color=auto'
 alias tree='tree -C'
 
