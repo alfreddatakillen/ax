@@ -1,5 +1,5 @@
 {
-    "editor.fontFamily": "hack",
+    "editor.fontFamily": "Hack Nerd Font",
     "editor.fontSize": 16,
     "terminal.integrated.fontSize": 12,
     "workbench.startupEditor": "none",

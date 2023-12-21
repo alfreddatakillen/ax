@@ -20,7 +20,9 @@ alias docker-compose='docker compose'
 
 # Colorize
 alias grep='grep --color'
+alias l='exa -a --group-directories-first --colour=always --icons'
 alias less='less -R'
+alias ll='exa -al --group-directories-first --colour=always --icons'
 alias ls='ls --color=auto'
 alias tree='tree -C'
 

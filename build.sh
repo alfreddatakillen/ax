@@ -60,7 +60,8 @@ echo "docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-
 # ---------------------
 #  FONTS
 # -------------------------
-echo "fonts-firacode fonts-hack fonts-noto-core fonts-noto-mono fonts-noto-extra fonts-noto-ui-core fonts-noto-color-emoji" >config/package-lists/fonts.list.chroot
+echo "fonts-firacode fonts-noto-core fonts-noto-mono fonts-noto-extra fonts-noto-ui-core fonts-noto-color-emoji" >config/package-lists/fonts.list.chroot
+# Hack font installed from Nerd Fonts by hook
 
 # --------------------m
 #  NODEJS
@@ -99,7 +100,7 @@ echo "openssh-server" >config/package-lists/sshd.list.chroot
 # -------------------------
 #  COMMAND LINE TOOLING
 # ---------------------------
-echo "htop jq timelimit tmux unzip" >config/package-lists/clitools.list.chroot
+echo "exa htop jq timelimit tmux unzip" >config/package-lists/clitools.list.chroot
 
 # --------------------
 #  WINDOW MANAGER
