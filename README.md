@@ -21,15 +21,23 @@ Live Linux distribution built on Debian Bookworm (12).
 * [Ripasso](https://github.com/cortex/ripasso/) password manager (on top of the standard unix password manager `pass`)
 * WireGuard (VPN)
 
+### Editors
+
+* Neovim
+* VSCode
+
+### Version control
+
+* git
+* Command line tooling for git:
+	* [grv](https://github.com/rgburke/grv) (Git Repository Viewer)
+	* [Lazygit](https://github.com/jesseduffield/lazygit) 
+	* [tig](https://github.com/jonas/tig) (Text-mode interface for Git)
+
 ### Programming languages/compilers/runtimes
 
 * nodejs (javascript)
 * golang
-
-### Editors
-
-* VSCode
-* Neovim
 
 ### Container tooling
 
@@ -46,5 +54,4 @@ Live Linux distribution built on Debian Bookworm (12).
 ### Misc tooling for developers
 
 * AWS CLI
-* git
 * Hack font (typeface designed for source code)
