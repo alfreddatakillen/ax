@@ -1,0 +1,6 @@
+[init]
+	defaultBranch = main
+[color]
+	ui = true
+[core]
+	pager = less -R
