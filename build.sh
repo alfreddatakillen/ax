@@ -100,7 +100,7 @@ echo "openssh-server" >config/package-lists/sshd.list.chroot
 # -------------------------
 #  COMMAND LINE TOOLING
 # ---------------------------
-echo "exa htop jq neofetch timelimit tmux unzip" >config/package-lists/clitools.list.chroot
+echo "exa htop jq neofetch p7zip-full timelimit tmux unzip" >config/package-lists/clitools.list.chroot
 
 # --------------------
 #  WINDOW MANAGER
