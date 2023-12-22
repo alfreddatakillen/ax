@@ -12,8 +12,22 @@ source /usr/share/bash-completion/completions/pass
 # Add golang bin dir to PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 
+# The IS_SSH variable is set to "true" if this is an SSH session, otherwise "false":
+IS_SSH="false"
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+	IS_SSH="true"
+else
+	# If the login shell's parent process name is sshd, it's an ssh session:
+	case $(ps -o comm= -p "$PPID") in
+		sshd|*/sshd) IS_SSH="true";;
+	esac
+fi
+export IS_SSH
+
 # GPG agent will be used for SSH auth (enables Yubikey auth for ssh)
-export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
+if [ "$IS_SSH" = "false" ]; then
+	export SSH_AUTH_SOCK=${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh
+fi
 
 # Shortcuts/etc
 alias docker-compose='docker compose'
