@@ -78,3 +78,5 @@ _EOF_
 	service docker start
 fi
 
+/usr/local/bin/servicestarter-docker-compose
+
