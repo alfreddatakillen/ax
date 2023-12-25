@@ -4,5 +4,33 @@
     "terminal.integrated.fontSize": 12,
     "workbench.startupEditor": "none",
     "security.workspace.trust.enabled": false,
-    "security.workspace.trust.startupPrompt": "never"
+    "security.workspace.trust.startupPrompt": "never",
+    "git.openRepositoryInParentFolders": "never",
+    "editor.detectIndentation": false,
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    "[graphql]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+
+    "[handlebars]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
