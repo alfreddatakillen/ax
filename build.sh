@@ -172,6 +172,21 @@ echo "pass" >config/package-lists/password.list.chroot
 # -----------------------------------
 echo "awscli" >config/package-lists/aws.list.chroot
 
+# -----------------
+#  TORRENT
+# --------------
+echo "transmission" >config/package-lists/torrent.list.chroot
+
+# ---------------
+#  VIDEO
+# ------------
+echo "vlc" >config/package-lists/video.list.chroot
+
+# --------------
+#  IMAGE EDITING
+# ----------------
+echo "gimp" >config/package-lists/imgedit.list.chroot
+
 # ----------------
 #  COPY HOOKS FILES
 # ------------------
