@@ -7,6 +7,9 @@ for SERVICEMOUNT in $(ls -F /opt/servicemounts | grep "/$" | sed 's/\/$//'); do
 		for DIR in $DOCKER_COMPOSE_DIRS; do
 			if [ -e "$DIR/docker-compose.yml" ]; then
 				pushd "$DIR" >/dev/null
+					# Some container do not start but end up in a "created" state
+					# if we do not do compose down first (do not know why):
+					docker compose down
 					docker compose up -d
 				popd >/dev/null
 			fi
