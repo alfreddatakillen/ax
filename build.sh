@@ -112,6 +112,11 @@ pushd "config/packages.chroot" >/dev/null
 wget https://github.com/Ulauncher/Ulauncher/releases/download/5.15.6/ulauncher_5.15.6_all.deb
 popd >/dev/null
 
+# -------------------------
+#  SCREEN SHOTS
+# --------------------
+echo "maim" >config/package-lists/screenshots.list.chroot
+
 # -----------------
 #  TERMINAL
 # ----------------------
