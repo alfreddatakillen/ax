@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Removes silly start upp message in Transmission when those exists:
+
+mkdir -p /etc/skel/.config/transmission/blocklists
+mkdir -p /etc/skel/.config/transmission/torrents
+mkdir -p /etc/skel/.config/transmission/resume
