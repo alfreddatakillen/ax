@@ -8,29 +8,27 @@
     "git.openRepositoryInParentFolders": "never",
     "editor.detectIndentation": false,
     "[javascript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[javascriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-
     "[graphql]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
-
     "[handlebars]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 }
