@@ -182,6 +182,11 @@ echo "awscli" >config/package-lists/aws.list.chroot
 # --------------
 echo "transmission" >config/package-lists/torrent.list.chroot
 
+# ------------------
+#  FTP
+# -------------
+echo "filezilla" >/config/package-lists/ftp.list.chroot
+
 # ---------------
 #  VIDEO
 # ------------
