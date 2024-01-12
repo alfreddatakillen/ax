@@ -14,3 +14,8 @@ echo "br_netfilter" >>/etc/modules
 go install sigs.k8s.io/kind@v0.20.0
 cp $HOME/go/bin/kind /usr/local/bin/kind
 rm -Rf $HOME/go $HOME/.cache
+
+wget https://get.helm.sh/helm-v3.13.3-linux-amd64.tar.gz
+tar xzvf helm-v3.13.3-linux-amd64.tar.gz
+cp linux-amd64/helm /usr/local/bin/helm
+rm -Rf linux-amd64
