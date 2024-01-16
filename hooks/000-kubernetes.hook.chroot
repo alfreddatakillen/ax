@@ -19,6 +19,7 @@ wget https://get.helm.sh/helm-v3.13.3-linux-amd64.tar.gz
 tar xzvf helm-v3.13.3-linux-amd64.tar.gz
 cp linux-amd64/helm /usr/local/bin/helm
 rm -Rf linux-amd64
+rm helm-v3.13.3-linux-amd64.tar.gz
 
 # Do not run kubelet per default
 systemctl disable kubelet
