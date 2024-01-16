@@ -129,9 +129,9 @@ echo "iwd" >config/package-lists/wifi.list.chroot
 # iwd configuration is in hooks/iwd.hook.chroot
 
 # -------------------
-#  WIREGUARD
+#  VPN
 # -----------------
-echo "wireguard" >config/package-lists/wireguard.list.chroot
+echo "nebula wireguard" >config/package-lists/vpn.list.chroot
 
 # ----------------
 #  WEB BROWSER
