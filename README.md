@@ -89,3 +89,40 @@ Pointing to a directory that docker will use for it's data. Use `%MOUNTDIR%` to 
 
 The directory will be created by the docker daemon if it does not exist.
 
+
+### `docker-compose-dirs`
+
+Array of directories that contains a docker-compose.yml file. ax will run `docker compose up -d` in all of those directories, after the docker daemon has started. Example:
+
+```
+{
+	"docker-compose-dirs": [
+		"%MOUNTDIR%/service/ircserver",
+		"%MOUNTDIR%/service/webserver"
+	]
+}
+```
+
+### `mountpoints`
+
+Array of directories to mount this partition at. Example:
+
+```
+{
+	"mountpoints": [
+		"/mnt/storage"
+	]
+}
+```
+
+### `nebula-config`
+
+Points at a configuration file for the nebula vpn. The nebula service will start with this config, if it exists. Example:
+
+```
+{
+	"nebula-config": "/mnt/internal/vpn/config.yml"
+}
+```
+
+
