@@ -7,3 +7,16 @@ UsePAM no
 PermitRootLogin no
 _EOF_
 
+# Put host keys in it's own directory,
+# so they can be persisted using a bind mount:
+mkdir -p /etc/ssh/hostkeys
+cat <<_EOF_ >/etc/ssh/sshd_config.d/hostkeys.conf
+HostKey /etc/ssh/hostkeys/ssh_host_rsa_key
+HostKey /etc/ssh/hostkeys/ssh_host_ecdsa_key
+HostKey /etc/ssh/hostkeys/ssh_host_ed25519_key
+_EOF_
+
+# Rewrite paths in the script that creates hosts keys:
+pushd "/lib/live/config"
+sed -i 's#/etc/ssh/ssh_host_#/etc/ssh/hostkeys/ssh_host_#g' 1160-openssh-server
+popd
