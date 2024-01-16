@@ -35,6 +35,7 @@ done
 # SET CONFIG VARS FROM CONFIG FILES
 CONTAINERD_DATA_DIR=""
 DOCKER_DATA_DIR=""
+NEBULA_CONFIG=""
 for SERVICEMOUNT in $(ls -F /opt/servicemounts | grep "/$" | sed 's/\/$//'); do
         MOUNTDIR="/opt/servicemounts/$SERVICEMOUNT"
         pushd "$MOUNTDIR" >/dev/null
@@ -50,6 +51,12 @@ for SERVICEMOUNT in $(ls -F /opt/servicemounts | grep "/$" | sed 's/\/$//'); do
                         DOCKER_DATA_DIR="$(echo "$D" | sed "s#%mountdir%#$(pwd)#i")"
                 fi
         fi
+	if [ "$NEBULA_CONFIG" = "" ]; then
+                N="$(cat .ax/config.json | jq -r '.["nebula-config"]')"
+                if [ "$N" != "null" ]; then
+                        NEBULA_CONFIG="$(echo "$N" | sed "s#%mountdir%#$(pwd)#i")"
+                fi
+	fi
 
         popd >/dev/null
 done
@@ -76,6 +83,26 @@ _EOF_
         fi
 	service containerd start
 	service docker start
+fi
+
+if [ "$NEBULA_CONFIG" != "" ]; then
+cat <<_EOF_ >/etc/systemd/system/nebula.service
+[Unit]
+Description=Nebula Service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=nebula
+ExecStart=/usr/bin/nebula -config $NEBULA_CONFIG
+
+[Install]
+WantedBy=multi-user.target
+_EOF_
+	systemctl start nebula
 fi
 
 /usr/local/bin/servicestarter-docker-compose
