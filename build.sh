@@ -170,7 +170,7 @@ echo "usbutils gnupg pcscd scdaemon pinentry-gnome3" >config/package-lists/yubi.
 # -------------------------------------------
 #  PASSWORD MANAGER
 # ----------------------------------
-echo "pass" >config/package-lists/password.list.chroot
+echo "pass oathtool" >config/package-lists/password.list.chroot
 
 # ---------------------------------------
 #  AWS
@@ -181,6 +181,11 @@ echo "awscli" >config/package-lists/aws.list.chroot
 #  TORRENT
 # --------------
 echo "transmission" >config/package-lists/torrent.list.chroot
+
+# ------------------
+#  FTP
+# -------------
+echo "filezilla" >/config/package-lists/ftp.list.chroot
 
 # ---------------
 #  VIDEO

@@ -2,7 +2,7 @@
 
 npm i -g editorconfig
 
-for VSCODEEXTENSION in dbaeumer.vscode-eslint EditorConfig.EditorConfig esbenp.prettier-vscode ms-azuretools.vscode-docker usernamehw.errorlens vespa-dev-works.jestRunIt; do
+for VSCODEEXTENSION in dbaeumer.vscode-eslint EditorConfig.EditorConfig esbenp.prettier-vscode ms-azuretools.vscode-docker usernamehw.errorlens; do
 	code --no-sandbox --user-data-dir /tmp/.code --extensions-dir /usr/share/code/resources/app/extensions --install-extension $VSCODEEXTENSION
 done
 
