@@ -11,7 +11,7 @@ if [ ! -d build/tmp ]; then
 fi
 pushd build/tmp >/dev/null
 
-if [ "$(pwd)" != "/opt/ax/build/tmp" ]; then
+if [ "$(pwd)" != "/usr/src/ax/build/tmp" ]; then
 	echo "Hängslen och svångrem."
 	exit 1
 fi
@@ -238,9 +238,9 @@ popd >/dev/null
 # ---------------------
 echo "live-build" >config/package-lists/livebuild.list.chroot
 pushd "../.." >/dev/null
-mkdir -p build/tmp/config/includes.chroot/opt/ax
-rsync -avR --exclude "build" . build/tmp/config/includes.chroot/opt/ax/
-mkdir build/tmp/config/includes.chroot/opt/ax/build
+mkdir -p build/tmp/config/includes.chroot/usr/src/ax
+rsync -avR --exclude "build" . build/tmp/config/includes.chroot/usr/src/ax/
+mkdir build/tmp/config/includes.chroot/usr/src/build
 popd >/dev/null
 
 # -----------------------------------------
