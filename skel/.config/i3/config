@@ -181,5 +181,6 @@ exec_always --no-startup-id ulauncher --hide-window
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --show-failed-attempts --ignore-empty-password --tiling --image=/home/user/.config/i3/lock.png
 exec --no-startup-id /usr/local/bin/lock &
 
+# Background image source: https://commons.wikimedia.org/wiki/File:Colorful_galaxy_(Unsplash).jpg
 exec_always --no-startup-id feh --bg-fill ~/.config/i3/background.jpg
 
