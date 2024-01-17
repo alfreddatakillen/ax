@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo chown -R 1000:1000 /opt/ax
+sudo chown -R 1000:1000 /usr/src/ax
