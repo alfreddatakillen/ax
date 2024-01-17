@@ -16,6 +16,12 @@ HostKey /etc/ssh/hostkeys/ssh_host_ecdsa_key
 HostKey /etc/ssh/hostkeys/ssh_host_ed25519_key
 _EOF_
 
+# Use directory for authorized_keys that can be bind mounted:
+mkdir -p /etc/ssh/hostkeys
+cat <<_EOF_ >/etc/ssh/sshd_config.d/authorized_keys.conf
+AuthorizedKeysFile /etc/ssh/authorized_keys/%u .ssh/authorized_keys .ssh/authorized_keys2
+_EOF_
+
 # Rewrite paths in the script that creates hosts keys:
 pushd "/lib/live/config"
 sed -i 's#/etc/ssh/ssh_host_#/etc/ssh/hostkeys/ssh_host_#g' 1160-openssh-server

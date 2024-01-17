@@ -243,12 +243,6 @@ rsync -avR --exclude "build" . build/config/includes.chroot/usr/src/ax/
 mkdir build/config/includes.chroot/usr/src/build
 popd >/dev/null
 
-# -----------------------------------------
-#  KEEP AUTHORIZED KEYS FROM BUILD MACHINE
-# ---------------------------------------
-mkdir -p config/includes.chroot/etc/skel/.ssh
-[[ -f "/home/user/.ssh/authorized_keys" ]] && cp /home/user/.ssh/authorized_keys config/includes.chroot/etc/skel/.ssh/authorized_keys
-
 # ---------------
 #  BUILD IT!
 # -------------
