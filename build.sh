@@ -6,12 +6,12 @@ if [ "$(whoami)" != "root" ]; then
 	exit 1
 fi
 
-if [ ! -d build/tmp ]; then
-	mkdir -p build/tmp
+if [ ! -d build ]; then
+	mkdir -p build
 fi
-pushd build/tmp >/dev/null
+pushd build >/dev/null
 
-if [ "$(pwd)" != "/usr/src/ax/build/tmp" ]; then
+if [ "$(pwd)" != "/usr/src/ax/build" ]; then
 	echo "Hängslen och svångrem."
 	exit 1
 fi
@@ -200,55 +200,47 @@ echo "gimp" >config/package-lists/imgedit.list.chroot
 # ----------------
 #  COPY HOOKS FILES
 # ------------------
-pushd "../../hooks" >/dev/null
-rsync -avR . ../build/tmp/config/hooks/live/
+pushd "../hooks" >/dev/null
+rsync -avR . ../build/config/hooks/live/
 popd >/dev/null
 
 # ----------------
 #  COPY SKEL FILES
 # ------------------
-pushd "../../skel" >/dev/null
-mkdir -p ../build/tmp/config/includes.chroot/etc/skel/
-rsync -avR . ../build/tmp/config/includes.chroot/etc/skel/
-chown -R root:root ../build/tmp/config/includes.chroot/etc/skel
+pushd "../skel" >/dev/null
+mkdir -p ../build/config/includes.chroot/etc/skel/
+rsync -avR . ../build/config/includes.chroot/etc/skel/
+chown -R root:root ../build/config/includes.chroot/etc/skel
 popd >/dev/null
 
 # ----------------
 #  BINS
 # ------------------
-pushd "../../bin" >/dev/null
-mkdir -p ../build/tmp/config/includes.chroot/usr/local/bin
-rsync -avR . ../build/tmp/config/includes.chroot/usr/local/bin/
-chown -R root:root ../build/tmp/config/includes.chroot/usr/local/bin
-chmod -R 755 ../build/tmp/config/includes.chroot/usr/local/bin
+pushd "../bin" >/dev/null
+mkdir -p ../build/config/includes.chroot/usr/local/bin
+rsync -avR . ../build/config/includes.chroot/usr/local/bin/
+chown -R root:root ../build/config/includes.chroot/usr/local/bin
+chmod -R 755 ../build/config/includes.chroot/usr/local/bin
 popd >/dev/null
 
 # ----------------
 #  BOOT SCRIPTS
 # ------------------
-pushd "../../bootscripts" >/dev/null
-mkdir -p ../build/tmp/config/includes.chroot/lib/live/config
-rsync -avR . ../build/tmp/config/includes.chroot/lib/live/config/
-chown -R root:root ../build/tmp/config/includes.chroot/lib/live/config
-chmod -R 755 ../build/tmp/config/includes.chroot/lib/live/config
+pushd "../bootscripts" >/dev/null
+mkdir -p ../build/config/includes.chroot/lib/live/config
+rsync -avR . ../build/config/includes.chroot/lib/live/config/
+chown -R root:root ../build/config/includes.chroot/lib/live/config
+chmod -R 755 ../build/config/includes.chroot/lib/live/config
 popd >/dev/null
 
 # --------------------------
 #  STUFF TO BUILD THIS DISTRO
 # ---------------------
 echo "live-build" >config/package-lists/livebuild.list.chroot
-pushd "../.." >/dev/null
-mkdir -p build/tmp/config/includes.chroot/usr/src/ax
-rsync -avR --exclude "build" . build/tmp/config/includes.chroot/usr/src/ax/
-mkdir build/tmp/config/includes.chroot/usr/src/build
-popd >/dev/null
-
-# -----------------------------------------
-#  KEEP WIFI NETWORKS FROM BUILD MACHINE
-# ---------------------------------------
-mkdir -p config/includes.chroot/var/lib/iwd
-pushd config/includes.chroot/var/lib/iwd >/dev/null
-rsync -avr /var/lib/iwd/ ./
+pushd ".." >/dev/null
+mkdir -p build/config/includes.chroot/usr/src/ax
+rsync -avR --exclude "build" . build/config/includes.chroot/usr/src/ax/
+mkdir build/config/includes.chroot/usr/src/build
 popd >/dev/null
 
 # -----------------------------------------
