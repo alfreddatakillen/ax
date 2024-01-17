@@ -1,0 +1,16 @@
+#!/bin/bash
+
+function colour() {
+    local code=$( printf %03d $1 )
+    echo -ne "\033[38;5;${code}m"
+}
+function nocolour() {
+echo -ne "\033[0m"
+}
+
+echo "Key bindings:"
+echo -E " * $(colour 128)[$(colour 200)windows key $(colour 128)+$(colour 200) enter$(colour 128)]$(colour 250): $(colour 45)Start new terminal$(nocolour)"
+echo -E " * $(colour 128)[$(colour 200)windows key $(colour 128)+$(colour 200) space$(colour 128)]$(colour 250): $(colour 45)Start launcher$(nocolour)"
+echo -E " * $(colour 128)[$(colour 200)windows key $(colour 128)+$(colour 200) 0$(colour 128)-$(colour 200)9$(colour 128)]$(colour 250):   $(colour 45)Switch workspace$(nocolour)"
+
+
