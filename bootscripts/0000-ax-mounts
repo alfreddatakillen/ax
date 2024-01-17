@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# FIND NON-MOUNTED PARTITIONS:
+PARTITIONS="$(/usr/bin/lsblk --fs --json | /usr/bin/jq -r '.blockdevices[].children | select(. != null) | .[] | select((.mountpoints | length) == 1) | select(.mountpoints[0] == null) | select(.fstype == "ext4") | .name')"
+
+# CHECK IF THERE IS A .ax/mounts FILE ON PARTITION:
+PARTITIONS_WITH_MOUNTS_FILE=""
+for PARTITION in $PARTITIONS; do
+        FILE_EXISTS="$(/usr/sbin/debugfs -c -R "stat .ax/mounts" /dev/$PARTITION 2>/dev/null | grep "Type: regular")"
+        if [ "$FILE_EXISTS" != "" ]; then
+                PARTITIONS_WITH_MOUNTS_FILE="$PARTITION $PARTITIONS_WITH_MOUNTS_FILE"
+        fi
+done
+
+# MOUNT PARTITONS:
+for PARTITION in $PARTITIONS_WITH_MOUNTS_FILE; do
+        MOUNTDIR="/var/lib/ax/mounts/$PARTITION"
+        /usr/bin/mkdir -p "$MOUNTDIR"
+        /usr/bin/mount /dev/$PARTITION "$MOUNTDIR"
+
+	cat "$MOUNTDIR/.ax/mounts" | while IFS= read -r LINE; do
+		PARTITION_PATH="$(echo "$LINE" | cut -d: -f1)"
+		MOUNTPOINT="$(echo "$LINE" | cut -d: -f2)"
+		REST="$(echo "$LINE" | cut -d: -f3)"
+		if [ "$(echo "$PARTITION_PATH" | cut -b1)" = "/" ] && [ "$(echo "$MOUNTPOINT" | cut -b1)" = "/" ] && [ "$REST" = "" ]; then
+			/usr/bin/mkdir -p "$MOUNTDIR$PARTITION_PATH"
+			/usr/bin/mkdir -p "$MOUNTPOINT"
+			/usr/bin/mount --bind "$MOUNTDIR$PARTITION_PATH" "$MOUNTPOINT"
+		fi
+	done
+
+done
+
+
