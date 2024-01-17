@@ -4,3 +4,22 @@ addgroup --system nebula
 adduser --system --ingroup nebula --no-create-home --disabled-password nebula
 
 setcap cap_net_admin=+pe /usr/bin/nebula
+
+cat <<_EOF_ >/etc/systemd/system/nebula.service
+[Unit]
+Description=Nebula Service
+After=network.target
+StartLimitIntervalSec=0
+ConditionPathExists=/etc/nebula/config.yml
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=nebula
+ExecStart=/usr/bin/nebula -config /etc/nebula/config.yml
+
+[Install]
+WantedBy=multi-user.target
+_EOF_
+	systemctl start nebula
