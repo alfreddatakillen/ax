@@ -1,0 +1,7 @@
+#!/bin/bash
+if [ "$(ps waux | grep i3lock | grep -v xss-lock | grep -v grep)" != "" ]; then
+	# Already locked
+	exit 0
+fi
+
+sudo loginctl lock-sessions
