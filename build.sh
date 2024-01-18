@@ -105,7 +105,7 @@ echo "exa htop jq neofetch p7zip-full timelimit tmux unzip" >config/package-list
 # --------------------
 #  WINDOW MANAGER
 # ------------------
-echo "xorg xinit i3 feh polybar picom" >config/package-lists/wm.list.chroot
+echo "xorg xinit i3 i3lock i3lock-fancy feh polybar picom" >config/package-lists/wm.list.chroot
 # i3 config is in skel/.config/i3/config
 # picom config is in skel/.config/picom
 pushd "config/packages.chroot" >/dev/null
