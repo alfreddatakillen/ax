@@ -1,7 +1,16 @@
 #!/bin/bash
 if [ "$(ps waux | grep i3lock | grep -v xss-lock | grep -v grep)" != "" ]; then
-	# Already locked
+	echo "Already locked"
 	exit 0
 fi
 
-sudo loginctl lock-sessions
+# Wait for xss-lock to start.
+while [ "$(ps waux | grep xss-lock | grep -v grep)" = "" ]; do
+	sleep 0.1
+done
+
+if [ "$1" = "nodpms" ]; then
+	sudo loginctl lock-sessions
+else
+	xset dpms force off >/dev/null 2>&1 &
+fi
