@@ -239,9 +239,17 @@ popd >/dev/null
 echo "live-build" >config/package-lists/livebuild.list.chroot
 pushd ".." >/dev/null
 mkdir -p build/config/includes.chroot/usr/src/ax
-rsync -avR --exclude "build" . build/config/includes.chroot/usr/src/ax/
+rsync -avR --exclude "build" --exclude "local" . build/config/includes.chroot/usr/src/ax/
 mkdir build/config/includes.chroot/usr/src/build
 popd >/dev/null
+
+
+# -----------------
+#  LOCAL BUILD STUFF
+# ---------------------
+if [ -e ../local/build.sh ]; then
+	. ../local/build.sh
+fi
 
 # ---------------
 #  BUILD IT!
@@ -249,4 +257,5 @@ popd >/dev/null
 PATH="$PATH:/sbin:/usr/sbin" lb build --verbose --debug --color | tee ./build.log
 
 popd >/dev/null
+
 popd >/dev/null
