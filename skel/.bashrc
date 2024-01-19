@@ -61,6 +61,10 @@ fi
 if [ "$IS_SSH" = "false" ] || [ "$SSH_TTY" != "" ]; then
 	# Display some system data on terminal start
 	neofetch --ascii_distro tux --ascii_colors=distro --ascii_bold on --disable icons theme --os_arch on --cpu_temp C --uptime_shorthand tiny --memory_percent on --backend ascii
+
+	echo -ne "\033[38;5;243m"
+	fortune anarchism
+	echo -e "\033[0m"
 fi
 if [ "$IS_SSH" = "false" ]; then
 	ax
