@@ -197,6 +197,11 @@ echo "vlc" >config/package-lists/video.list.chroot
 # ----------------
 echo "gimp" >config/package-lists/imgedit.list.chroot
 
+# --------------------
+#  ANARCHISM
+# ----------------
+echo "anarchism fortune-anarchism" >config/package-lists/anarchism.list.chroot
+
 # ----------------
 #  COPY HOOKS FILES
 # ------------------

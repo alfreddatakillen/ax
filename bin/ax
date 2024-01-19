@@ -13,5 +13,7 @@ echo -E " * $(colour 128)[$(colour 200)windows key $(colour 128)+$(colour 200) e
 echo -E " * $(colour 128)[$(colour 200)windows key $(colour 128)+$(colour 200) space$(colour 128)]$(colour 250):  $(colour 45)Start launcher$(nocolour)"
 echo -E " * $(colour 128)[$(colour 200)windows key $(colour 128)+$(colour 200) 0$(colour 128)-$(colour 200)9$(colour 128)]$(colour 250):    $(colour 45)Switch workspace$(nocolour)"
 echo -E " * $(colour 128)[$(colour 200)windows key $(colour 128)+$(colour 200) escape$(colour 128)]$(colour 250): $(colour 45)Lock screen$(nocolour)"
+echo ""
 
+fortune anarchism
 
