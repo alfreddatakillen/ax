@@ -1,0 +1,8 @@
+#!/bin/bash
+cat <<_EOF_ >/etc/docker/daemon.json
+{
+  "default-address-pools": [
+    { "base": "172.19.0.0/16", "size": 24 }
+  ]
+}
+_EOF_
