@@ -81,10 +81,8 @@ echo "golang" >config/package-lists/golang.list.chroot
 # ---------------------
 #  KUBERNETES
 # ------------------
-echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" >config/archives/kubernetes.list.chroot
-curl https://packages.cloud.google.com/apt/doc/apt-key.gpg >config/archives/kubernetes.key.chroot
-cp config/archives/kubernetes.list.chroot config/archives/kubernetes.list.binary
-cp config/archives/kubernetes.key.chroot config/archives/kubernetes.key.binary
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' > /etc/apt/sources.list.d/kubernetes.list
 echo "kubelet kubeadm kubectl" >config/package-lists/kubernetes.list.chroot
 
 # ---------------------
