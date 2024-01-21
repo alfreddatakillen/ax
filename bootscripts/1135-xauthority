@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Removes compaints about .Xauthority missing
+
+touch /home/user/.Xauthority
+xauth generate :0 . trusted
+xauth add machine:0 . $(xxd -1 16 -p /dev/urandom)
+
