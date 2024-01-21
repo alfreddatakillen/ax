@@ -21,7 +21,7 @@ cp linux-amd64/helm /usr/local/bin/helm
 rm -Rf linux-amd64
 rm helm-v3.13.3-linux-amd64.tar.gz
 
-# Container
+# Containerd config (from kubernetes docs)
 echo <<_EOF_ >/etc/containerd/config.toml
 [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
   [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]

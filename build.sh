@@ -123,7 +123,7 @@ echo "alacritty" >config/package-lists/terminal.list.chroot
 # -------------------
 #  NETWORKING
 # -----------------
-echo "iwd" >config/package-lists/wifi.list.chroot
+echo "bind9-dnsutils iwd net-tools whois" >config/package-lists/wifi.list.chroot
 # iwd configuration is in hooks/iwd.hook.chroot
 
 # -------------------
