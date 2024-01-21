@@ -3,6 +3,8 @@
 # Removes compaints about .Xauthority missing
 
 touch /home/user/.Xauthority
-xauth generate :0 . trusted
-xauth add machine:0 . $(xxd -1 16 -p /dev/urandom)
+xauth -f /home/user/.Xauthority generate :0 . trusted
+xauth -f /home/user/.Xauthority add machine:0 . $(xxd -1 16 -p /dev/urandom)
+chmod 600 /home/user/.Xauthority
+chown 1000:1000 /home/user/.Xauthority
 
