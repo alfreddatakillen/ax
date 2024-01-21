@@ -25,6 +25,3 @@ rm helm-v3.13.3-linux-amd64.tar.gz
 # We need it enabled, so we just delete the config that deletes it.
 rm /etc/containerd/config.toml
 touch /etc/containerd/config.toml
-
-# Do not run kubelet per default
-systemctl disable kubelet
