@@ -21,5 +21,10 @@ cp linux-amd64/helm /usr/local/bin/helm
 rm -Rf linux-amd64
 rm helm-v3.13.3-linux-amd64.tar.gz
 
+# Containerd by default ships with cri disabled.
+# We need it enabled, so we just delete the config that deletes it.
+rm /etc/containerd/config.toml
+touch /etc/containerd/config.toml
+
 # Do not run kubelet per default
 systemctl disable kubelet
