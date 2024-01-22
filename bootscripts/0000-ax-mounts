@@ -21,11 +21,16 @@ for PARTITION in $PARTITIONS_WITH_MOUNTS_FILE; do
 	cat "$MOUNTDIR/.ax/mounts" | while IFS= read -r LINE; do
 		PARTITION_PATH="$(echo "$LINE" | cut -d: -f1)"
 		MOUNTPOINT="$(echo "$LINE" | cut -d: -f2)"
-		REST="$(echo "$LINE" | cut -d: -f3)"
-		if [ "$(echo "$PARTITION_PATH" | cut -b1)" = "/" ] && [ "$(echo "$MOUNTPOINT" | cut -b1)" = "/" ] && [ "$REST" = "" ]; then
+		OPTION="$(echo "$LINE" | cut -d: -f3)"
+		if [ "$(echo "$PARTITION_PATH" | cut -b1)" = "/" ] && [ "$(echo "$MOUNTPOINT" | cut -b1)" = "/" ]; then
 			/usr/bin/mkdir -p "$MOUNTDIR$PARTITION_PATH"
 			/usr/bin/mkdir -p "$MOUNTPOINT"
 			/usr/bin/mount --bind "$MOUNTDIR$PARTITION_PATH" "$MOUNTPOINT"
+		fi
+		if [ "$OPTION" = "livecopy" ]; then
+			if [ -d "/run/live/rootfs/filesystem.squashfs$MOUNTPOINT" ]; then
+				/usr/bin/rsync -arv "/run/live/rootfs/filesystem.squashfs$MOUNTPOINT/" "$MOUNTPOINT"
+			fi
 		fi
 	done
 
