@@ -17,6 +17,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=nebula
+ExecStartPre=+/bin/sh -c 'echo "$(/usr/local/bin/nebula-ip) $(/usr/local/bin/nebula-name)" >>/etc/hosts'
 ExecStart=/usr/bin/nebula -config /etc/nebula/config.yml
 
 [Install]
