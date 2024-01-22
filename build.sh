@@ -95,6 +95,11 @@ echo "build-essential" >config/package-lists/buildtools.list.chroot
 # ----------------
 echo "openssh-server" >config/package-lists/sshd.list.chroot
 
+# -------
+#  CERT STUFF
+# ----------
+echo "gnutls-bin" >config/package-lists/cert.list.chroot
+
 # -------------------------
 #  COMMAND LINE TOOLING
 # ---------------------------

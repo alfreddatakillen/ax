@@ -1,0 +1,5 @@
+#!/bin/bash
+pushd /etc/nebula >/dev/null
+CERTFILE="$(cat config.yml | grep '^[^#]*cert:' | sed -E 's/[^:]+: *//')"
+nebula-cert print -path "$CERTFILE" -json | jq -r .details.name
+popd >/dev/null
