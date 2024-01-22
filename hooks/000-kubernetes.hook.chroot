@@ -47,3 +47,5 @@ RestartSec=10
 [Install]
 WantedBy=multi-user.target
 _EOF_
+
+echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >>/root/.bashrc
