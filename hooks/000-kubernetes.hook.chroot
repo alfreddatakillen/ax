@@ -29,7 +29,21 @@ rm helm-v3.13.3-linux-amd64.tar.gz
 mkdir -p /etc/containerd
 containerd config default | sed 's/SystemdCgroup = false/SystemdCgroup = true/' | sed -E 's/registry\.k8s\.io\/pause:[0-9\.]+/registry.k8s.io\/pause:3.9/' >/etc/containerd/config.toml
 
-# Do not run kubelet per default
-# (Manually start for now. Later: Autostart after nebula if there is kubernetes config.)
-systemctl disable kubelet
+# Start kubelet service only if there is a config.
+cat <<_EOF_ >/lib/systemd/system/kubelet.service
+[Unit]
+Description=kubelet: The Kubernetes Node Agent
+Documentation=https://kubernetes.io/docs/home/
+Wants=network-online.target
+After=network-online.target
+ConditionPathExists=/etc/kubernetes/kubelet.conf
 
+[Service]
+ExecStart=/usr/bin/kubelet
+Restart=always
+StartLimitInterval=0
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+_EOF_
