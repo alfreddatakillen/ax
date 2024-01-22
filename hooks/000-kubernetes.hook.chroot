@@ -27,7 +27,7 @@ rm helm-v3.13.3-linux-amd64.tar.gz
 # * pause version 3.9
 # (Those are kubernetes related changes)
 mkdir -p /etc/containerd
-containerd config default | sed 's/SystemdCgroup = false/SystemdCgroup = true/' | sed 's/registry\.k8s\.io\/pause:.*/registry.k8s.io\/pause:3.9/' >/etc/containerd/config.toml
+containerd config default | sed 's/SystemdCgroup = false/SystemdCgroup = true/' | sed -E 's/registry\.k8s\.io\/pause:[0-9\.]+/registry.k8s.io\/pause:3.9/' >/etc/containerd/config.toml
 
 # Do not run kubelet per default
 # (Manually start for now. Later: Autostart after nebula if there is kubernetes config.)
