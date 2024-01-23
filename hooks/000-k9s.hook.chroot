@@ -1,0 +1,4 @@
+#!/bin/bash
+curl -sS https://webinstall.dev/k9s | bash
+cp /root/.local/bin/k9s /usr/local/bin
+rm -Rf /root/.local /root/Downloads /root/.bashrc
