@@ -251,6 +251,20 @@ rsync -avR --exclude "build" --exclude "local" . build/config/includes.chroot/us
 mkdir build/config/includes.chroot/usr/src/build
 popd >/dev/null
 
+# ------------------
+#  BOOTLOADERS
+# ---------------
+mkdir -p config/bootloaders
+pushd config/bootloaders >/dev/null
+rsync -arv /usr/share/live/build/bootloaders/ .
+sed -i 's/timeout 0/timeout 2/' extlinux/extlinux.conf
+sed -i 's/default 0/default 0\ntimeout 2/' grub-legacy/menu.lst
+sed -i 's/set default=0/set default=0\nset timeout=2/' grub-pc/config.cfg
+sed -i 's/timeout 0/timeout 2/' isolinux/isolinux.conf
+sed -i 's/timeout 0/timeout 2/' pxelinux/pxelinux.cfg/default
+sed -i 's/timeout 0/timeout 2/' syslinux/syslinux.conf
+
+popd >/dev/null
 
 # -----------------
 #  LOCAL BUILD STUFF
