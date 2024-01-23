@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# The ripasso build will remove our .bashrc,
+# so we want this hook to execute after ripasso.
+
 # Enable some kubernetes networking yada
 cat <<_EOF_ >/etc/sysctl.d/kubernetes.conf
 net.bridge.bridge-nf-call-ip6tables = 1

@@ -1,6 +1,6 @@
 #!/bin/bash
 pushd /root
-rm -Rf .bash_history .cache .dotnet .local .ssh .wget-hsts
+rm -Rf .bash_history .cache .dotnet .local .npm .ssh .wget-hsts
 popd
 
 apt clean -y
