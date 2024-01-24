@@ -2,8 +2,9 @@
 find /etc/skel/.gnupg -type f -exec chmod 600 {} \;
 find /etc/skel/.gnupg -type d -exec chmod 700 {} \;
 
-# Removes to nopasswd for user
-rm /etc/sudoers.d/live
+# Removes the nopasswd sudo for user
+rm /lib/live/config/0040-sudo # The script that creates /etc/sudoers.d/live
+rm /etc/sudoers.d/live # Also remove now (if it exists for some reason).
 
 # Disables sudo timeout
 sed -E -i 's/(Defaults[ \t]+)env_reset/\1env_reset\n\1timestamp_timeout=0/' /etc/sudoers
