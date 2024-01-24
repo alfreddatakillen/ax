@@ -22,7 +22,7 @@ destroyit() {
 	rm -Rf /var/lib/etcd/.*
 	rm -Rf /var/lib/kubelet/*
 	rm -Rf /var/lib/kubelet/.*
-	rm -RF /opt/cni/bin/flannel
+	rm -Rf /opt/cni/bin/flannel
 	systemd start containerd
 }
 
@@ -41,7 +41,7 @@ echo ""
 echo "Host: $(nebula-name)"
 echo "  IP: $(nebula-ip)"
 echo ""
-eread -p "Continue (y/n)?" choice
+read -p "Continue (y/n)?" choice
 case "$choice" in 
   y|Y ) destroyit;;
   n|N ) echo "Aborting.";;
