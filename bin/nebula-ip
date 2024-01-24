@@ -1,4 +1,7 @@
 #!/bin/bash
+
+[ "$(id -u)" != 0 ] && exec sudo "$0"
+
 pushd /etc/nebula >/dev/null
 CERTFILE="$(cat config.yml | grep '^[^#]*cert:' | sed -E 's/[^:]+: *//')"
 nebula-cert print -path "$CERTFILE" -json | jq -r .details.ips[0] | sed 's/\/.*//'

@@ -34,6 +34,20 @@ containerd config default | sed 's/SystemdCgroup = false/SystemdCgroup = true/' 
 
 echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >>/root/.bashrc
 
+# Kubernetes default settings.
+# To override, do a bind mount at /etc/ax/kubernetes
+mkdir -p /etc/ax/kubernetes
+cat <<_EOF_ >/etc/ax/kubernetes/config.env
+AX_KUBERNETES_APISERVER_BIND_PORT="6443"
+AX_KUBERNETES_POD_NETWORK_CIDR="172.24.128.0/18"
+AX_KUBERNETES_SERVICE_CIDR="172.24.192.0/18"
+AX_KUBERNETES_SERVICE_DNS_DOMAIN="cluster.local"
+
+# This IP is used when joining nodes to the cluster,
+# so this it should point to your first kubernetes node:
+AX_KUBERNETES_CONTROL_PLANE_IP="172.24.0.1"
+_EOF_
+
 # TODO:
 # Script that shuts down kubelet service after boot
 # if there is no kubernetes config.

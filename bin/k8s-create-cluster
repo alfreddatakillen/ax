@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ "$(whoami)" != "root" ]; then
+	echo "must be root."
+	exit 1
+fi
+
+source /etc/ax/kubernetes/config.env
+
+kubeadm init \
+	--advertise-address=$(nebula-ip) \
+	--apiserver-advertise-address=$(nebula-ip) \
+	--apiserver-bind-port=$AX_KUBERNETES_APISERVER_BIND_PORT \
+	--apiserver-cert-extra-sans=$(nebula-ip) \
+	--control-plane-endpoint=$(nebula-ip):$AX_KUBERNETES_APISERVER_BIND_PORT \
+	--pod-network-cidr=$AX_KUBERNETES_POD_NETWORK_CIDR \
+	--node-name $(nebula-name) \
+	--service-dns-domain=$AX_KUBERNETES_SERVICE_DNS_DOMAIN \
+	--service-cidr $AX_KUBERNETES_SERVICE_CIDR
+

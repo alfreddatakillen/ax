@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ "$(whoami)" != "root" ]; then
+	echo "must be root."
+	exit 1
+fi
+
+source /etc/ax/kubernetes/config.env
+
+/bin/bash -c "$(ssh $AX_KUBERNETES_CONTROL_PLANE_IP "k8s-print-join-command") \
+	--node-name $(nebula-name) \
+	--apiserver-advertise-address=$(nebula-ip) \
+	--apiserver-bind-port=$AX_KUBERNETES_APISERVER_BIND_PORT"
+
