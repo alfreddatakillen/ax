@@ -8,7 +8,6 @@ fi
 source /etc/ax/kubernetes/config.env
 
 kubeadm init \
-	--advertise-address=$(nebula-ip) \
 	--apiserver-advertise-address=$(nebula-ip) \
 	--apiserver-bind-port=$AX_KUBERNETES_APISERVER_BIND_PORT \
 	--apiserver-cert-extra-sans=$(nebula-ip) \
