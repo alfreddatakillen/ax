@@ -6,9 +6,6 @@ find ~/.gnupg -type d -exec chmod 700 {} \;
 find ~/.ssh -type f -exec chmod 600 {} \;
 find ~/.ssh -type d -exec chmod 700 {} \;
 
-# Autocomplete pass
-source /usr/share/bash-completion/completions/pass
-
 # Add golang bin dir to PATH
 export PATH="$PATH:$(go env GOPATH)/bin"
 
@@ -51,6 +48,18 @@ function set_window_title(){
 	echo -ne "\033]0; $PWD \007"
 }
 starship_precmd_user_func="set_window_title"
+
+# Autocomplete kubectl, pass
+source /etc/bash_completion
+source <(kubectl completion bash)
+source /usr/share/bash-completion/completions/pass
+
+# Kubernetes aliases
+alias k='kubectl'
+alias kp='kubectl get pods --all-namespaces -o=wide'
+
+# Use autocompletion for kubectl on alias k as well:
+complete -F __start_kubectl k
 
 if [ "$IS_SSH" = "false" ]; then 
 	# Set window title to currently running command
