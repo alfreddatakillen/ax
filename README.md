@@ -19,7 +19,11 @@ Live Linux distribution built on Debian Bookworm (12).
 * Yubikey for SSH auth
 * Yubikey for GPG
 * [Ripasso](https://github.com/cortex/ripasso/) password manager (on top of the standard unix password manager `pass`)
-* WireGuard (VPN)
+
+### VPN
+
+* Nebula
+* Wireguard
 
 ### Editors
 
@@ -42,8 +46,7 @@ Live Linux distribution built on Debian Bookworm (12).
 ### Container tooling
 
 * docker
-* kubernetes tooling (kubectl, kubeadm)
-* kind for local kubernetes development
+* kubernetes
 
 ### Web browsers
 
@@ -58,71 +61,87 @@ Live Linux distribution built on Debian Bookworm (12).
 
 ## Configuration
 
-At boot time, ax will look through all your disk drives, searching for ext4 partitions with the file `/.ax/config.json` on it.
+At boot time, ax will look through all your disks, searching for ext4 partitions with the file `/.ax/mounts` on it.
 
-All partitions with that configuration file will be mounted as `/opt/servicemounts/<devicename>`.
+The `/.ax/mounts` file lists paths on the ext4 partiontions that should be bind mounted to specific paths in your filesystem.
 
-Those configuration files may have those configuration options:
-
-### `containerd-data-dir`
-
-Pointing to a directory that containerd will use for it's data. Use `%MOUNTDIR%` to point to the mount directory for the partition for the corresponding configuration file. Example:
+Example:
 
 ```
-{
-	"containerd-data-dir": "%MOUNTDIR%/var/lib/containerd"
-}
+/ax/myauthkeys:/etc/ssh/authorized_keys
+/ax/nebulaconfig:/etc/nebula
 ```
 
-The directory will be created by the containerd daemon if it does not exist.
+This would bind mount `/ax/myauthkeys` to the mointpoint `/etc/ssh/authorized_keys` and `/ax/nebulaconfig` to the mountpoint `/etc/nebula`.
 
+This way, you can adapt the configuration by mounting configs to correct paths.
 
-### `docker-data-dir`
+## Persistent storage
 
-Pointing to a directory that docker will use for it's data. Use `%MOUNTDIR%` to point to the mount directory for the partition for the corresponding configuration file. Example:
+Just as you can mount configuration using `/.ax/mounts`, you can also use the mounts for persistent storage.
 
-```
-{
-	"docker-data-dir": "%MOUNTDIR%/var/lib/docker"
-}
-```
+Note: The user home directory (`/home/user`) is created at boot and can not be persisted.
 
-The directory will be created by the docker daemon if it does not exist.
+## Persisting your WIFI network information
 
+Use the `iwctl` command to make your WIFI configuration.
 
-### `docker-compose-dirs`
-
-Array of directories that contains a docker-compose.yml file. ax will run `docker compose up -d` in all of those directories, after the docker daemon has started. Example:
+Make a bind mount at `/var/lib/iwd` to persist your WIFI configuration. Example `/.ax/mounts`:
 
 ```
-{
-	"docker-compose-dirs": [
-		"%MOUNTDIR%/service/ircserver",
-		"%MOUNTDIR%/service/webserver"
-	]
-}
+/opt/my-wifi-stuff:/var/lib/iwd
 ```
 
-### `mountpoints`
+## Persisting your hostkeys
 
-Array of directories to mount this partition at. Example:
+To persist your SSH host keys between reboots, do a bind mount at the mountpoint `/etc/ssh/hostkeys`.
 
-```
-{
-	"mountpoints": [
-		"/mnt/storage"
-	]
-}
-```
-
-### `nebula-config`
-
-Points at a configuration file for the nebula vpn. The nebula service will start with this config, if it exists. Example:
+Example `/.ax/mounts`:
 
 ```
-{
-	"nebula-config": "/mnt/internal/vpn/config.yml"
-}
+/ax/my-ssh-hostkeys:/etc/ssh/hostkeys
 ```
 
+## Persisting authorized keys
 
+The persist your authorized_keys, do a bind mount at the mountpoint `/etc/ssh/authorized_keys` and put a file called `user` in it, with your authorized ssh keys (using normal `authorized_keys` format.)
+
+## Running Nebula VPN on ax
+
+Make a bind mount on `/etc/nebula` and put your nebula configuration there. If there is a `/etc/nebula/config.yml`, the nebula daemon will start at boot time
+
+## Running Kubernetes on ax
+
+AX can be used for running a Kubernetes cluster.
+
+### Step 1: Nebula VPN
+
+The default Kubernetes configuration on ax was made for having a nebula VPN running, and Kubernetes nodes communicating over the VPN.
+
+By default, AX was made to use `172.24.0.0/18` for the VPN, and `172.24.0.1` for the first control plane node. This configuration can be changed by bind mounting on `/etc/ax/kubernetes` with other values in the `config.env` file.
+
+Make sure to allow TCP traffic on ports `6443` and `10250` between the Kubernetes nodes.
+
+### Step 2: Bind mounts for persistency and configuration
+
+To run Kubernetes on ax, you have to do bind mounting of those mountpoints (for configuration and perstistent storage):
+
+* `/var/lib/cni`
+* `/var/lib/etcd`
+* `/var/lib/kubelet`
+* `/etc/cni/net.d`
+* `/etc/kubernetes`
+* `/opt/cni/bin` (with `livecopy` option)
+* `/usr/libexec/kubernetes`
+
+### Step 3: Create control plane node
+
+On your `172.24.0.1` (if using the default config) machine, run the script `k8s-create-cluster` to make it your first control plane.
+
+### Step 4: CNI
+
+Install your CNI of choice.
+
+### Sten 5: Make other AX machines into kubernetes worker nodes
+
+On other machines, run `k8s-join-worker-node` and follow the instructions, to make them worker nodes.
