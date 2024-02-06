@@ -9,11 +9,11 @@ git clone --depth 1 https://github.com/cortex/ripasso.git
 pushd ripasso
 
 cargo fetch
-cargo build --all --frozen --release --offline
+cargo build --all --frozen --offline
 
 popd
 
-cp ripasso/target/release/ripasso-cursive /usr/local/bin/ripasso
+cp ripasso/target/debug/ripasso-cursive /usr/local/bin/ripasso
 rm -Rf ripasso
 
 pushd "$HOME" >/dev/null
