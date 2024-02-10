@@ -44,10 +44,9 @@ AX_KUBERNETES_SERVICE_DNS_DOMAIN="cluster.local"
 AX_KUBERNETES_CONTROL_PLANE_IP="172.24.0.1"
 _EOF_
 
-pushd /etc/local/bin
 wget https://raw.githubusercontent.com/johanhaleby/kubetail/master/kubetail
 chmod a+x kubetail
-popd
+mv kubetail /usr/local/bin/kubetail
 
 # TODO:
 # Script that shuts down kubelet service after boot
