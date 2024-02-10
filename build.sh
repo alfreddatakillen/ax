@@ -157,7 +157,8 @@ echo "pulseaudio libpulse-dev pavucontrol" >config/package-lists/audio.list.chro
 # --------------------------
 #  MISC STUFF
 # ----------------------
-echo "psmisc" >config/package-lists/misc.list.chroot
+# apache2-utils for installing htpasswd
+echo "psmisc apache2-utils" >config/package-lists/misc.list.chroot
 
 # -------------------
 #  GIT
