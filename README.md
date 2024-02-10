@@ -47,6 +47,9 @@ Live Linux distribution built on Debian Bookworm (12).
 
 * docker
 * kubernetes
+	* kubeadm, kubectl, kubelet, etc. standard tooling
+	* k9s - view and manage your kubernetes cluster
+	* kubetail - tailing logs from multiple pods
 
 ### Web browsers
 
