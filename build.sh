@@ -154,6 +154,11 @@ popd >/dev/null
 # --------------------
 echo "pulseaudio libpulse-dev pavucontrol" >config/package-lists/audio.list.chroot
 
+# --------------------------------
+#  DATABASE STUFF
+# -------------------------------
+echo "mariadb-client mycli" >config/package-lists/db.list.chroot
+
 # --------------------------
 #  MISC STUFF
 # ----------------------
