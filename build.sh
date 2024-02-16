@@ -194,7 +194,7 @@ echo "transmission" >config/package-lists/torrent.list.chroot
 # ------------------
 #  FTP
 # -------------
-echo "filezilla" >/config/package-lists/ftp.list.chroot
+echo "filezilla" >config/package-lists/ftp.list.chroot
 
 # ---------------
 #  VIDEO
