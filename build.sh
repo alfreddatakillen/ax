@@ -191,9 +191,9 @@ echo "transmission" >config/package-lists/torrent.list.chroot
 echo "filezilla" >/config/package-lists/ftp.list.chroot
 
 # ---------------
-#  VIDEO
+#  VIDEO/MEDIA
 # ------------
-echo "vlc" >config/package-lists/video.list.chroot
+echo "ffmpeg vlc" >config/package-lists/video.list.chroot
 
 # --------------
 #  IMAGE EDITING
