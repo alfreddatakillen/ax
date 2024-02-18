@@ -123,7 +123,7 @@ The default Kubernetes configuration on ax was made for having a nebula VPN runn
 
 By default, AX was made to use `172.24.0.0/18` for the VPN, and `172.24.0.1` for the first control plane node. This configuration can be changed by bind mounting on `/etc/ax/kubernetes` with other values in the `config.env` file.
 
-Make sure to allow TCP traffic on ports `6443` and `10250` between the Kubernetes nodes.
+Make sure to allow TCP traffic on ports `6443`, `8443` and `10250` between the Kubernetes nodes.
 
 ### Step 2: Bind mounts for persistency and configuration
 

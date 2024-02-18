@@ -154,10 +154,16 @@ popd >/dev/null
 # --------------------
 echo "pulseaudio libpulse-dev pavucontrol" >config/package-lists/audio.list.chroot
 
+# --------------------------------
+#  DATABASE STUFF
+# -------------------------------
+echo "mariadb-client mycli" >config/package-lists/db.list.chroot
+
 # --------------------------
 #  MISC STUFF
 # ----------------------
-echo "psmisc" >config/package-lists/misc.list.chroot
+# apache2-utils for installing htpasswd
+echo "psmisc apache2-utils" >config/package-lists/misc.list.chroot
 
 # -------------------
 #  GIT
@@ -188,7 +194,7 @@ echo "transmission" >config/package-lists/torrent.list.chroot
 # ------------------
 #  FTP
 # -------------
-echo "filezilla" >/config/package-lists/ftp.list.chroot
+echo "filezilla" >config/package-lists/ftp.list.chroot
 
 # ---------------
 #  VIDEO/MEDIA
