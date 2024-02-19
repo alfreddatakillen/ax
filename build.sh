@@ -196,15 +196,10 @@ echo "transmission" >config/package-lists/torrent.list.chroot
 # -------------
 echo "filezilla" >config/package-lists/ftp.list.chroot
 
-# ---------------
-#  VIDEO/MEDIA
-# ------------
-echo "ffmpeg vlc" >config/package-lists/video.list.chroot
-
-# --------------
-#  IMAGE EDITING
-# ----------------
-echo "gimp" >config/package-lists/imgedit.list.chroot
+# ------------------------
+#  AUDIO/VIDEO/MEDIA
+# ---------------------
+echo "audacity ffmpeg gimp vlc" >config/package-lists/media.list.chroot
 
 # --------------------
 #  ANARCHISM
