@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Installs bun
+npm install -g bun
