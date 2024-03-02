@@ -1,7 +1,7 @@
 font:
   normal:
     family: Hack Nerd Font
-  size: 7.5
+  size: 12
 draw_bold_text_with_bright_colors: true
 cursor: 
   style:
@@ -15,3 +15,5 @@ mouse:
 selection:
   save_to_clipboard: true
 dynamic_title: true
+env:
+  WINIT_X11_SCALE_FACTOR: "1"
