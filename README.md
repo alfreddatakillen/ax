@@ -74,7 +74,7 @@ The configuration directory will be copied to the `/etc/ax` directory on the des
 Use mkpasswd to create a hash of the user's password on the new system. Store the hash in the file `passwd/user` in your configuration directory. Example (using `/etc/ax` as configuration directory):
 
 ```
-printf "topsecret" | mkpasswd --stdin --method=sha-512 >/etc/ax/passwd/user
+$ printf "topsecret" | mkpasswd --stdin --method=sha-512 >/etc/ax/passwd/user
 ```
 
 ### Authorized keys for ssh
@@ -82,6 +82,18 @@ printf "topsecret" | mkpasswd --stdin --method=sha-512 >/etc/ax/passwd/user
 In your configuration directory, create a subdirectory called `authorized_keys`. Put your authorized keys there, in a file matching the user's username.
 
 Example: For the user `user`, when `/etc/ax` is your configuration directory, put your authorized ssh keys in the file `/etc/ax/authorized_keys/user`.
+
+### Host keys for ssh
+
+In your configuration directory, create a subdirectory called `hostkeys`. Put your host keys there.
+
+Example: Using `/etc/ax` as your configuration directory, copy your current set of host keys to it:
+
+```
+$ mkdir -p /etc/ax/hostkeys
+$ cp /etc/ssh/hostkeys/* /etc/ax/hostkeys
+```
+
 
 ## Boot time configuration
 
@@ -114,16 +126,6 @@ Make a bind mount at `/var/lib/iwd` to persist your WIFI configuration. Example 
 
 ```
 /opt/my-wifi-stuff:/var/lib/iwd
-```
-
-## Persisting your hostkeys
-
-To persist your SSH host keys between reboots, do a bind mount at the mountpoint `/etc/ssh/hostkeys`.
-
-Example `/.ax/mounts`:
-
-```
-/ax/my-ssh-hostkeys:/etc/ssh/hostkeys
 ```
 
 ## Running Nebula VPN on ax

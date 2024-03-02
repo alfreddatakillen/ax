@@ -314,10 +314,26 @@ if [ -d "$CONFIG_DIR/authorized_keys" ]; then
 	mkdir -p "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys"
 	rsync -avR . "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys/"
 	chown -R root:root "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys"
-	find "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys" -type f -exec chmod 444 "{}" \;
-	find "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys" -type d -exec chmod 555 "{}" \;
+	find "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys" -type f -exec chmod 644 "{}" \;
+	find "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys" -type d -exec chmod 755 "{}" \;
 	popd >/dev/null
 fi
+
+# --------------
+#  HOST KEYS
+# ------------
+if [ -d "$CONFIG_DIR/hostkeys" ]; then
+	pushd "$CONFIG_DIR/hostkeys" >/dev/null
+	mkdir -p "$BUILD_DIR/config/includes.chroot/etc/ssh/hostkeys"
+	rsync -avR . "$BUILD_DIR/config/includes.chroot/etc/ssh/hostkeys/"
+	chown -R root:root "$BUILD_DIR/config/includes.chroot/etc/ssh/hostkeys"
+	find "$BUILD_DIR/config/includes.chroot/etc/ssh/hostkeys" -type f -exec chmod 600 "{}" \;
+	find "$BUILD_DIR/config/includes.chroot/etc/ssh/hostkeys" -type d -exec chmod 700 "{}" \;
+	chmod 644 "$BUILD_DIR/config/includes.chroot/etc/ssh/hostkeys/*.pub"
+	chmod 755 "$BUILD_DIR/config/includes.chroot/etc/ssh/hostkeys"
+	popd >/dev/null
+fi
+
 
 # ---------------
 #  BUILD IT!
