@@ -69,7 +69,7 @@ mkdir -p "$BUILD_DIR/config/includes.chroot/etc/ax"
 rsync -avR . "$BUILD_DIR/config/includes.chroot/etc/ax/"
 popd >/dev/null
 CONFIG_DIR="$BUILD_DIR/config/includes.chroot/etc/ax"
-chown root:root "$CONFIG_DIR"
+chown -R root:root "$CONFIG_DIR"
 find "$CONFIG_DIR" -type f -exec chmod 400 "{}" \;
 find "$CONFIG_DIR" -type d -exec chmod 500 "{}" \;
 
@@ -311,8 +311,11 @@ fi
 # ----------------------
 if [ -d "$CONFIG_DIR/authorized_keys" ]; then
 	pushd "$CONFIG_DIR/authorized_keys" >/dev/null
-	mkdir -p build/config/includes.chroot/etc/ssh/authorized_keys
-	rsync -avR . build/config/includes.chroot/etc/ssh/authorized_keys/
+	mkdir -p "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys"
+	rsync -avR . "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys/"
+	chown -R root:root "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys"
+	find "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys" -type f -exec chmod 444 "{}" \;
+	find "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys" -type d -exec chmod 555 "{}" \;
 	popd >/dev/null
 fi
 
