@@ -22,6 +22,7 @@ fi
 if [ ! -d build ]; then
 	mkdir -p build
 fi
+pushd "build"
 if [ "$(pwd)" != "$BUILD_DIR" ]; then
 	echo "Hängslen och svångrem."
 	exit 1
@@ -298,13 +299,15 @@ popd >/dev/null
 # Generate password hash like this:
 # printf "mypassword" | mkpasswd --stdin --method=sha-512
 # (mkpasswd is in the whois package. apt install whois.)
+echo "$CONFIG_DIR/passwd/user"
 if [ -f "$CONFIG_DIR/passwd/user" ]; then
-	PASSHASH="$($CONFIG_DIR/passwd/user | head -1)"
 	cat <<_EOF_ >config/includes.chroot/lib/live/config/0035-passwd
 #!/bin/bash
-printf 'user:$PASSHASH' | chpasswd -e
+printf 'user:$(cat $CONFIG_DIR/passwd/user | head -1)' | chpasswd -e
 _EOF_
 fi
+
+exit 1
 
 # ---------------
 #  BUILD IT!
