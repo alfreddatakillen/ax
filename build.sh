@@ -329,7 +329,7 @@ if [ -d "$CONFIG_DIR/hostkeys" ]; then
 	chown -R root:root "$BUILD_DIR/config/includes.chroot/etc/ssh/hostkeys"
 	find "$BUILD_DIR/config/includes.chroot/etc/ssh/hostkeys" -type f -exec chmod 600 "{}" \;
 	find "$BUILD_DIR/config/includes.chroot/etc/ssh/hostkeys" -type d -exec chmod 700 "{}" \;
-	chmod 644 "$BUILD_DIR/config/includes.chroot/etc/ssh/hostkeys/*.pub"
+	chmod 644 "$BUILD_DIR"/config/includes.chroot/etc/ssh/hostkeys/*.pub
 	chmod 755 "$BUILD_DIR/config/includes.chroot/etc/ssh/hostkeys"
 	popd >/dev/null
 fi
