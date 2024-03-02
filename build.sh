@@ -311,8 +311,8 @@ fi
 # ----------------------
 if [ -d "$CONFIG_DIR/authorized_keys" ]; then
 	pushd "$CONFIG_DIR/authorized_keys" >/dev/null
-	mkdir -p build/config/includes.chroot/etc/ssh/authorized_keys
-	rsync -avR . build/config/includes.chroot/etc/ssh/authorized_keys/
+	mkdir -p "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys"
+	rsync -avR . "$BUILD_DIR/config/includes.chroot/etc/ssh/authorized_keys/"
 	popd >/dev/null
 fi
 
