@@ -62,7 +62,22 @@ Live Linux distribution built on Debian Bookworm (12).
 * AWS CLI
 * Hack font (typeface designed for source code)
 
-## Configuration
+## Build configuration
+
+Pass configuration directory as first argument to `build.sh`,
+or `build.sh` will use the system's `/etc/ax`.
+
+The configuration directory will be copied to the `/etc/ax` directory on the destination system.
+
+### User password
+
+Use mkpasswd to create a hash of the user's password on the new system. Store the hash in the file `passwd/user` in your configuration directory. Example (using `/etc/ax` as configuration directory):
+
+```
+printf "topsecret" | mkpasswd --stdin --method=sha-512 >/etc/ax/passwd/user
+```
+
+## Boot time configuration
 
 At boot time, ax will look through all your disks, searching for ext4 partitions with the file `/.ax/mounts` on it.
 

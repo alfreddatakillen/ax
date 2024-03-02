@@ -6,12 +6,23 @@ if [ "$(whoami)" != "root" ]; then
 	exit 1
 fi
 
+BUILD_DIR="/usr/src/ax/build"
+CONFIG_DIR="$1"
+if [ "$1" = "" ]; then
+	CONFIG_DIR="/etc/ax"
+fi
+if [ ! -d "$CONFIG_DIR" ]; then
+	echo "Configuration directory does not exist: $CONFIG_DIR"
+	exit 1
+fi
+
+# After the configuration has been copied into the destination etc/ax,
+# the CONFIG_DIR variable will change to destination etc/ax directory.
+
 if [ ! -d build ]; then
 	mkdir -p build
 fi
-pushd build >/dev/null
-
-if [ "$(pwd)" != "/usr/src/ax/build" ]; then
+if [ "$(pwd)" != "$BUILD_DIR" ]; then
 	echo "Hängslen och svångrem."
 	exit 1
 fi
@@ -47,6 +58,19 @@ lb config \
 	--iso-volume "ax ($(date --rfc-3339=date))"
 
 echo "! Packages Priority standard" > config/package-lists/standard.list.chroot
+
+# ---------------------
+#  COPY AX CONFIGURATION
+# --------------------------
+
+pushd "$CONFIG_DIR" >/dev/null
+mkdir -p "$BUILD_DIR/config/includes.chroot/etc/ax"
+rsync -avR . "$BUILD_DIR/config/includes.chroot/etc/ax/"
+popd >/dev/null
+CONFIG_DIR="$BUILD_DIR/config/includes.chroot/etc/ax"
+chown root:root "$CONFIG_DIR"
+find "$CONFIG_DIR" -type f -exec chmod 400 "{}" \;
+find "$CONFIG_DIR" -type d -exec chmod 500 "{}" \;
 
 # ---------------------
 #  DOCKER
@@ -248,7 +272,7 @@ popd >/dev/null
 echo "live-build" >config/package-lists/livebuild.list.chroot
 pushd ".." >/dev/null
 mkdir -p build/config/includes.chroot/usr/src/ax
-rsync -avR --exclude "build" --exclude "local" . build/config/includes.chroot/usr/src/ax/
+rsync -avR --exclude "build" . build/config/includes.chroot/usr/src/ax/
 mkdir build/config/includes.chroot/usr/src/build
 popd >/dev/null
 
@@ -267,11 +291,19 @@ sed -i 's/timeout 0/timeout 2/' syslinux/syslinux.cfg
 
 popd >/dev/null
 
-# -----------------
-#  LOCAL BUILD STUFF
-# ---------------------
-if [ -e ../local/build.sh ]; then
-	. ../local/build.sh
+# -------------------------------
+#  USER PASSWORD
+# ----------------------------
+
+# Generate password hash like this:
+# printf "mypassword" | mkpasswd --stdin --method=sha-512
+# (mkpasswd is in the whois package. apt install whois.)
+if [ -f "$CONFIG_DIR/passwd/user" ]; then
+	PASSHASH="$($CONFIG_DIR/passwd/user | head -1)"
+	cat <<_EOF_ >config/includes.chroot/lib/live/config/0035-passwd
+#!/bin/bash
+printf 'user:$PASSHASH' | chpasswd -e
+_EOF_
 fi
 
 # ---------------
