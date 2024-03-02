@@ -77,6 +77,12 @@ Use mkpasswd to create a hash of the user's password on the new system. Store th
 printf "topsecret" | mkpasswd --stdin --method=sha-512 >/etc/ax/passwd/user
 ```
 
+### Authorized keys for ssh
+
+In your configuration directory, create a subdirectory called `authorized_keys`. Put your authorized keys there, in a file matching the user's username.
+
+Example: For the user `user`, when `/etc/ax` is your configuration directory, put your authorized ssh keys in the file `/etc/ax/authorized_keys/user`.
+
 ## Boot time configuration
 
 At boot time, ax will look through all your disks, searching for ext4 partitions with the file `/.ax/mounts` on it.
@@ -119,10 +125,6 @@ Example `/.ax/mounts`:
 ```
 /ax/my-ssh-hostkeys:/etc/ssh/hostkeys
 ```
-
-## Persisting authorized keys
-
-The persist your authorized_keys, do a bind mount at the mountpoint `/etc/ssh/authorized_keys` and put a file called `user` in it, with your authorized ssh keys (using normal `authorized_keys` format.)
 
 ## Running Nebula VPN on ax
 
