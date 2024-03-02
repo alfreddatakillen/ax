@@ -299,7 +299,6 @@ popd >/dev/null
 # Generate password hash like this:
 # printf "mypassword" | mkpasswd --stdin --method=sha-512
 # (mkpasswd is in the whois package. apt install whois.)
-echo "$CONFIG_DIR/passwd/user"
 if [ -f "$CONFIG_DIR/passwd/user" ]; then
 	cat <<_EOF_ >config/includes.chroot/lib/live/config/0035-passwd
 #!/bin/bash
@@ -307,7 +306,15 @@ printf 'user:$(cat $CONFIG_DIR/passwd/user | head -1)' | chpasswd -e
 _EOF_
 fi
 
-exit 1
+# -------------------------
+#  AUTHORIZED_KEYS
+# ----------------------
+if [ -d "$CONFIG_DIR/authorized_keys" ]; then
+	pushd "$CONFIG_DIR/authorized_keys" >/dev/null
+	mkdir -p build/config/includes.chroot/etc/ssh/authorized_keys
+	rsync -avR . build/config/includes.chroot/etc/ssh/authorized_keys/
+	popd >/dev/null
+fi
 
 # ---------------
 #  BUILD IT!
