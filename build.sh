@@ -226,6 +226,11 @@ echo "filezilla" >config/package-lists/ftp.list.chroot
 # ---------------------
 echo "audacity ffmpeg gimp vlc" >config/package-lists/media.list.chroot
 
+# ------------------
+#  VIRT MACHINERY
+# -----------------
+echo "qemu-system-x86" >config/package-lists/virtmachine.list.chroot
+
 # --------------------
 #  ANARCHISM
 # ----------------
