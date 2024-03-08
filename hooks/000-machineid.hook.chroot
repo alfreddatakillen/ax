@@ -15,3 +15,4 @@ ExecStart=/usr/local/bin/machine-id
 WantedBy=multi-user.target
 _EOF_
 
+systemctl enable machineid.service
