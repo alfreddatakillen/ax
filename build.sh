@@ -34,7 +34,7 @@ rm -Rf * .build
 # To remove kernel output during boot, add this to bootappend-live: quiet loglevel=0
 lb config \
 	-a amd64 \
-	--bootappend-live "boot=live components keyboard-layouts=se live-config.hostname=machine live-config.timezone=Europe/Zurich live-config.user-default-groups=cdrom,floppy,sudo,audio,dip,video,plugdev,users,user,netdev,docker" \
+	--bootappend-live "boot=live components keyboard-layouts=se live-config.hostname=machine live-config.timezone=Europe/Zurich live-config.user-default-groups=cdrom,floppy,sudo,audio,dip,video,plugdev,users,user,netdev,docker ip=frommedia" \
 	--parent-mirror-bootstrap http://ftp.se.debian.org/debian/ \
 	--parent-mirror-binary http://ftp.se.debian.org/debian/ \
 	--parent-mirror-chroot-security http://security.debian.org/ \
@@ -164,7 +164,7 @@ echo "nebula wireguard" >config/package-lists/vpn.list.chroot
 # ----------------
 #  WEB BROWSER
 # ------------------
-echo "curl chromium firefox-esr torbrowser-launcher" >config/package-lists/webbrowser.list.chroot
+echo "curl chromium firefox-esr" >config/package-lists/webbrowser.list.chroot
 
 # -------------------
 #  EDITOR
