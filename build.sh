@@ -261,10 +261,20 @@ popd >/dev/null
 #  BOOT SCRIPTS
 # ------------------
 pushd "../bootscripts" >/dev/null
+mkdir -p ../build/config/includes.chroot/lib/live/boot
+rsync -avr . ../build/config/includes.chroot/lib/live/boot/
+chown -r root:root ../build/config/includes.chroot/lib/live/boot
+chmod -r 755 ../build/config/includes.chroot/lib/live/boot
+popd >/dev/null
+
+# ----------------
+#  CONFIG SCRIPTS
+# ------------------
+pushd "../configscripts" >/dev/null
 mkdir -p ../build/config/includes.chroot/lib/live/config
-rsync -avR . ../build/config/includes.chroot/lib/live/config/
-chown -R root:root ../build/config/includes.chroot/lib/live/config
-chmod -R 755 ../build/config/includes.chroot/lib/live/config
+rsync -avr . ../build/config/includes.chroot/lib/live/config/
+chown -r root:root ../build/config/includes.chroot/lib/live/config
+chmod -r 755 ../build/config/includes.chroot/lib/live/config
 popd >/dev/null
 
 # --------------------------
@@ -337,7 +347,7 @@ fi
 # ---------------
 #  INTERFACES
 # -------------
-if [ -d "$CONFIG_DIR/interfaces.d"]; then
+if [ -d "$CONFIG_DIR/interfaces.d" ]; then
 	pushd "$CONFIG_DIR/interfaces.d" >/dev/null
 	mkdir -p "$BUILD_DIR/config/includes.chroot/etc/network/interfaces.d"
 	rsync -avR . "$BUILD_DIR/config/includes.chroot/etc/network/interfaces.d"

@@ -1,0 +1,12 @@
+[Unit]
+Description=Sets machine id
+Before=systemd-machine-id-commit.service
+DefaultDependencies=no
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/machine-id
+
+[Install]
+WantedBy=multi-user.target
+
