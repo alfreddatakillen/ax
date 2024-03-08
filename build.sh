@@ -334,6 +334,19 @@ if [ -d "$CONFIG_DIR/hostkeys" ]; then
 	popd >/dev/null
 fi
 
+# ---------------
+#  INTERFACES
+# -------------
+if [ -d "$CONFIG_DIR/interfaces.d"]; then
+	pushd "$CONFIG_DIR/interfaces.d" >/dev/null
+	mkdir -p "$BUILD_DIR/config/includes.chroot/etc/network/interfaces.d"
+	rsync -avR . "$BUILD_DIR/config/includes.chroot/etc/network/interfaces.d"
+	chown -R root:root "$BUILD_DIR/config/includes.chroot/etc/network/interfaces.d"
+	find "$BUILD_DIR/config/includes.chroot/etc/network/interfaces.d" -type f -exec chmod 600 "{}" \;
+	find "$BUILD_DIR/config/includes.chroot/etc/network/interfaces.d" -type d -exec chmod 700 "{}" \;
+	echo "source /etc/network/interfaces.d/*" >$BUILD_DIR/config/includes.chroot/etc/network/interfaces
+	popd >/dev/null
+fi
 
 # ---------------
 #  BUILD IT!
