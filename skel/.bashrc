@@ -36,6 +36,17 @@ alias less='less -R'
 alias ll='exa -al --group-directories-first --colour=always --icons'
 alias ls='ls --color=auto'
 alias tree='tree -C'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
+alias .......='cd ../../../../../..'
+alias ........='cd ../../../../../../..'
+alias .........='cd ../../../../../../../..'
+alias ..........='cd ../../../../../../../../..'
+alias ...........='cd ../../../../../../../../../..'
+alias ............='cd ../../../../../../../../../../..'
 
 # Source ls colors from https://github.com/trapd00r/LS_COLORS
 source /usr/local/bin/lscolors.sh
