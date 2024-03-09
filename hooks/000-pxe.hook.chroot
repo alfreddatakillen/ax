@@ -1,0 +1,25 @@
+#!/bin/bash
+cat <<_EOF_ >/etc/dhcp/dhcpd.conf
+default-lease-time 600;
+max-lease-time 7200;
+ddns-update-style none;
+authoriative;
+subnet 192.168.200.0 netmask 255.255.255.0 {
+	range 192.168.200.100 192.168.200.199;
+	option broadcast-address 192.168.200.255;
+	option routers 192.168.200.1;
+	next-server 192.168.200.1;
+	filename "pxelinux.0";
+}
+_EOF_
+cat <<_EOF_ >/etc/default/isc-dhcp-server
+#DHCPDv4_CONF=/etc/dhcp/dhcpd.conf
+#DHCPDv6_CONF=/etc/dhcp/dhcpd6.conf
+#DHCPDv4_PID=/var/run/dhcpd.pid
+#DHCPDv6_PID=/var/run/dhcpd6.pid
+OPTIONS="-4"
+INTERFACESv4="eno4"
+INTERFACESv6=""
+_EOF_
+
+

@@ -231,6 +231,11 @@ echo "audacity ffmpeg gimp vlc" >config/package-lists/media.list.chroot
 # -----------------
 echo "qemu-system-x86" >config/package-lists/virtmachine.list.chroot
 
+# -------------
+#  DHCP/PXE
+# ------------
+echo "isc-dhcp-server" >config/package-lists/pxe.list.chroot
+
 # --------------------
 #  ANARCHISM
 # ----------------
@@ -262,11 +267,19 @@ chown -R root:root ../build/config/includes.chroot/usr/local/bin
 chmod -R 755 ../build/config/includes.chroot/usr/local/bin
 popd >/dev/null
 
+# ------------
+#  MACHINE ID
+# -------------
+if [ -f "$CONFIG_DIR/machine-id" ]; then
+	cat $CONFIG_DIR/machine-id >$BUILD_DIR/config/includes.chroot/etc/machine-id
+	chmod 644 $BUILD_DIR/config/includes.chroot/etc/machine-id
+fi
+ 
 # ----------------
 #  BOOT SCRIPTS
 # ------------------
 pushd "../bootscripts" >/dev/null
-mkdir -p $BUILD_DIR/config/includes.chroot/lib/live/boot
+mkdir -p $build_dir/config/includes.chroot/lib/live/boot
 rsync -avr $BUILD_DIR/config/includes.chroot/lib/live/boot/
 chown -R root:root $BUILD_DIR/config/includes.chroot/lib/live/boot
 chmod -R 755 $BUILD_DIR/config/includes.chroot/lib/live/boot
