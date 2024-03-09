@@ -1,5 +1,7 @@
 #!/bin/bash
 cat <<_EOF_ >/etc/dhcp/dhcpd.conf
+allow bootp;
+allow booting;
 default-lease-time 600;
 max-lease-time 7200;
 ddns-update-style none;
@@ -22,4 +24,33 @@ INTERFACESv4="eno4"
 INTERFACESv6=""
 _EOF_
 
+mkdir -p /srv/tftp
+cp /usr/lib/PXELINUX/pxelinux.0 /srv/tftp/pxelinux.0
 
+cp /boot/initrd.img-* /srv/tftp/initrd.img
+cp /boot/vmlinuz-* /srv/tftp/vmlinuz
+
+mkdir -p /srv/tftp/boot/isolinux
+cp /usr/lib/syslinux/modules/bios/* /srv/tftp/boot/isolinux
+
+mkdir -p /srv/tftp/pxelinux.cfg
+cat <<_EOF_ >/srv/tftp/pxelinux.cfg/default
+PROMPT 1
+TIMEOUT 300
+ONTIMEOUT ax
+
+LABEL ax
+    MENU LABEL ax
+    KERNEL vmlinuz
+    APPEND initrd=initrd.img dhcp ethdevice=eno1 components locales=sv_SE.UTF-8 boot=live fetch=http://192.168.200.1:4711/filesystem.squashfs
+
+LABEL reboot
+    MENU LABEL reboot computer
+    COM32 reboot.c32
+
+_EOF_
+cat <<_EOF_ >/etc/merecat.conf
+port = 4711
+compression-level = 0
+directory = /usr/lib/live/mount/medium/live
+_EOF_

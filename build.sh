@@ -234,7 +234,7 @@ echo "qemu-system-x86" >config/package-lists/virtmachine.list.chroot
 # -------------
 #  DHCP/PXE
 # ------------
-echo "isc-dhcp-server" >config/package-lists/pxe.list.chroot
+echo "isc-dhcp-server tftpd-hpa pxelinux syslinux-common merecat tftp" >config/package-lists/pxe.list.chroot
 
 # --------------------
 #  ANARCHISM
